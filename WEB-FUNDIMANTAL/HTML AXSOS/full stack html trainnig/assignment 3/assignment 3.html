@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rigistration Form</title>
+    
+</head>
+<body>
+    <h1><strong>Registration Form</strong></h1>
+    <label for="namb">First Name: * </label>
+    <input type="text" name="First_name" id="namb" >
+    <br>
+    <label for="name">Last name: * </label>
+    <input type="text" name="Last name" id="name">
+    <br>
+    <label for="email">Email Address: *</label>
+    <input type="text" name="Email Address" id="email" >
+    <br>
+    <label for="pass">Password: *</label>
+    <input type="password" name="password" id="pass" >
+    <br>
+    <label for="pas">Confirm Password: *</label>
+    <input type="password" name="Confirm_Password" id="pas" >
+    <br>
+    <label for="age">Birthday: *</label>
+    <input type="date" name="Birthday" id="age" >
+    <br>
+    <label >Gender Identity</label>
+    <br>
+    <input type="radio" name="radio" id="male" >
+    <label for="male">Male</label>
+
+    <input type="radio" name="radio" id="female" >
+    <label for="female">female</label>
+
+    <input type="radio" name="radio" id="bi" >
+    <label for="bi">Non-binary</label>
+
+    <input type="radio" name="radio" id="no" >
+    <label for="no">I prefer not to answer</label>
+    <br>
+    <label >A short description about myseif:</label>
+    <br>
+    <textarea name="comment" cols="15" rows="2" id="11"></textarea>
+    <br>
+    <label>Favorite Language:</label>
+    <select name="Language" >
+        <option value="text">JavaScript</option>
+        <option value="text">Html</option>
+    </select>
+    <br>
+    <input type="checkbox" name="checkbox" id="checkbox" >
+    <label>Yes, I would like to recive periodic email update</label>
+    <br>
+    <form action="/process">
+        <div>
+            <input type="submit" value="Creat Account" >
+        </div>
+    </form>
+    <br>
+    <label > st* Indicates a required filed</label>
+    
+
+    
+</body>
+</html>
