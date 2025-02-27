@@ -1,0 +1,46 @@
+
+
+h1{
+    color: aliceblue;
+    background-color:rgb(0, 0, 0) ;
+    font-size: 40px;
+    font-style: unset;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;   
+    line-height: 50px; 
+    margin-bottom: 9px ;
+}
+
+.highlight{
+    
+    color: aqua;
+
+}
+h2{
+    
+    background-color:rgb(98, 16, 174) ;
+    color: aliceblue;
+    font-style: oblique;
+    font: size 1px;  
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: lighter;
+    margin-bottom: 9px;
+    margin-top: 0px;
+    line-height: 40px;
+
+}
+a{
+    font-size: 19px;
+    text-decoration-line: underline;
+    font-family:cursive ;
+    font-weight:normal;
+    line-height: 30px;
+}
+.link{
+    text-align: right;
+    background-color: rgb(128, 165, 234);
+}
+
+
+
