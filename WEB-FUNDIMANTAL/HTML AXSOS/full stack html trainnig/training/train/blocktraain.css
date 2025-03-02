@@ -1,0 +1,26 @@
+h1 ,h2 {
+    display: inline-block;
+    color: blueviolet;
+    width: 250px;
+}
+
+label ,input {
+display: block;
+
+}
+
+p {
+  display: inline-block;
+  width: 200px;
+  box-sizing: border-box;
+  padding: 29px;
+  background-color: lightgreen;
+  margin: 10px;
+}
+a {
+  text-decoration: none;
+  color: darkslategrey;
+  background-color: blanchedalmond;
+  padding: 100px;
+  margin: 10px;
+}

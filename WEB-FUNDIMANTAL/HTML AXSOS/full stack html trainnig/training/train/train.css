@@ -1,0 +1,54 @@
+.is-centered{
+    text-align: center;
+}
+.is-red{
+
+background: #35b236;    color: blue;
+}
+#game {
+    outline: 11px solid red;
+
+    width: 320px;
+    height: 240px;
+    overflow: hidden;
+    background: linear-gradient(#1293f5, #bae8ff 80%, #35b236 80%);
+}
+#player {
+    margin-top: 140px;
+    margin-left: 50px;
+}
+/* Don't worry about knowing what all of these properties are yet */
+/* we'll come back to them later, we promise! */
+.quote p {
+    color: darkslategrey;
+    font-style: italic;
+}
+.header > img {
+    height: 50px;
+}
+input {
+    padding: 55px;
+    border-color: rebeccapurple;
+}
+h1{color: cyan;
+background-color: #35b236;
+}
+#a > {
+    background-color: rgb(5, 6, 6);
+}
+#box-1, #box-2, #box-3{
+    height: 100px;
+    width: 100px;
+    background-color: red;
+  }
+  #box-1{
+    margin: 20px;
+  }
+  #box-2{
+    margin: 30px;
+  }
+  #box-3{
+    margin: 3px;
+  }
+
+
