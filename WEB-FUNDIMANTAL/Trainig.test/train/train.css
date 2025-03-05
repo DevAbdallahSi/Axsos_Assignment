@@ -1,54 +1,46 @@
-.is-centered{
-    text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
 }
-.is-red{
-
-background: #35b236;    color: blue;
+.container {
+  width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 4px 4px 4px grey;
 }
-#game {
-    outline: 11px solid red;
-
-    width: 320px;
-    height: 240px;
-    overflow: hidden;
-    background: linear-gradient(#1293f5, #bae8ff 80%, #35b236 80%);
+h1 {
+  font-size: 50px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
 }
-#player {
-    margin-top: 140px;
-    margin-left: 50px;
+p {
+  margin: 20px 0;
+  font-size: 1.1rem;
 }
-/* Don't worry about knowing what all of these properties are yet */
-/* we'll come back to them later, we promise! */
-.quote p {
-    color: darkslategrey;
-    font-style: italic;
+#message {
+  width: inherit;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 4px 4px 4px grey;
+  /* change the position properties here */
+  position: fixed; 
+  bottom: 80px;
 }
-.header > img {
-    height: 50px;
+#message * {
+  margin: 10px;
 }
-input {
-    padding: 55px;
-    border-color: rebeccapurple;
+#message .header {
+  margin: 0px;
+  background-color: #ddd;
+  padding: 10px;
+  font-weight: 900;
+  display: flex;
+  justify-content: space-between;
 }
-h1{color: cyan;
-background-color: #35b236;
+#message button {
+  height: 30px;
+  width: 80px;
 }
-#a > {
-    background-color: rgb(5, 6, 6);
-}
-#box-1, #box-2, #box-3{
-    height: 100px;
-    width: 100px;
-    background-color: red;
-  }
-  #box-1{
-    margin: 20px;
-  }
-  #box-2{
-    margin: 30px;
-  }
-  #box-3{
-    margin: 3px;
-  }
-
-
