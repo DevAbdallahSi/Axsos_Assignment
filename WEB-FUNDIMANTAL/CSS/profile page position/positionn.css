@@ -1,10 +1,10 @@
 *{
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     border: 0;
 }
 body{
-    width: 1200px;
+    width: 900px;
     height: 600px;
     border: 5px solid black;
     
@@ -20,35 +20,34 @@ body{
     color: white;
     font-family: monospace;
     text-decoration: none;
-    word-spacing: 10px;
+    gap: px;
 }
-
+#header h1{
+    margin-left: 50px;
+}
 
 
 .links a{
     color: white;
     text-decoration: none;
-    margin: 20px;
+    margin: 2px;
     font-weight: bold;
     font-size: large;
-    
-    
+    margin-left: 10px;
 
 }
 
 #Sign button{
-    color: white;
     background-color: rgb(23 162 184);
-    margin-left: 150px;
     display: flex;
     justify-content: end;
     padding: 5px 10px;
-    border: 1px none none;
 
 }
 .mainsiction{
     position: relative;
-    height: 520px;
+    height: 540px;
+    width: 900px;
 }
 #firstbox{
     width: 402px;
@@ -62,7 +61,7 @@ body{
 
 .top1{
     background-color: #17a2b8;
-    width: 405px;
+    width: 406px;
     height: 90px;
     
 }
@@ -112,7 +111,7 @@ body{
     left: 580px;
 }
 .topbox{
-    width: 234px;
+    width: 236px;
     height: 50px;
     background-color: #333333;
     display: flex;
@@ -120,9 +119,11 @@ body{
     align-items: center;
     color: #cccccc;
     font-family: monospace;
+    font-size: large;
 }
 .sircle2{
-    width: 15PX;
+    width: 20PX;
+    height: 20px;
     border-radius: 50%;
     
 }
@@ -149,33 +150,40 @@ body{
     justify-content: space-evenly;
 }
 .corect{
-    padding-left: 20px;
+    padding-left: 40px;
 }
 .corect1{
-    padding-left: 25px;
+    padding-left: 45px;
 }
 
 
 .box3{
-    width: 404px;
-    height: 120px;
+    width: 406px;
+    height: 135px;
     position: absolute;
     left: 150px;
     top: 380px;
+    margin: 0;
     
 }
 .top3 {
-    width: 104px;
+    width: 406px;
     background-color: #333333;
     height: 40px;
     display: flex;
-    justify-content: start;
     align-items: center;
-    padding-right: 301px;
+    justify-content: start;
+
+.final{
     color: white;
     font-weight: bold;
     font-family: monospace;
     font-size: large;
+    display: flex;
+    align-items: center;
+    margin: 0px 0 0 10px;
+    
+}
 }
 .box3butum {
     width: 400px;
@@ -195,12 +203,12 @@ body{
     margin-left: 10px;
     color: #959595;
 }
-.box4{
+#box4{
     height: 300px;
     width: 236px;
     position: absolute;
     top: 202px;
-    right: 385px;
+    right: 85px;
 }
 .top4{
     display: flex;

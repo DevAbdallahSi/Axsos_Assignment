@@ -1,16 +1,24 @@
-for(var i=1 ; i<=100 ; i++ ){
-if (i % 3 === 0  &&  i % 5 ===0){
-    console.log("FizzBuzz")
+// for(var i=1 ; i <= 20 ; i++){
+//     if(i % 2 == 1){
+//         console.log(i +" "+ "odd")
+//     }
+//     else{
+//         console.log("num is not odd " + i )
+//     }
+// }
+
+for(var dnum=100 ; dnum >= 0 ; dnum--){
+    // console.log(dnum)
+    if(dnum % 3 == 0){
+        console.log(dnum + " "+ "num is divisible")
+    }
+    // else{
+    //     console.log("num is not divisible")
+    // }
 }
-else if(i % 3 === 0){
-    console.log("Fizz")
-}
-else if(i % 5 === 0 ){
-    console.log("Bizz")
-}
-else{
-    console.log(i)
-}
-}
+
+
+
+
 
 
