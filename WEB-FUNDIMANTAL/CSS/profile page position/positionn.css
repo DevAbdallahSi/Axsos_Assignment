@@ -23,7 +23,7 @@ body{
     gap: px;
 }
 #header h1{
-    margin-left: 50px;
+    margin-left: 120px;
 }
 
 
@@ -42,7 +42,7 @@ body{
     display: flex;
     justify-content: end;
     padding: 5px 10px;
-
+    margin-right: 74px;
 }
 .mainsiction{
     position: relative;
@@ -54,7 +54,7 @@ body{
     height: 330px;
     position: absolute;
     top: 20px;
-    left: 150px;
+    left: 120px;
 }
 
 
@@ -108,7 +108,7 @@ body{
     height: 150px;
     position: absolute;
     top: 20px;
-    left: 580px;
+    left: 550px;
 }
 .topbox{
     width: 236px;
@@ -161,7 +161,7 @@ body{
     width: 406px;
     height: 135px;
     position: absolute;
-    left: 150px;
+    left: 120px;
     top: 380px;
     margin: 0;
     
@@ -208,7 +208,7 @@ body{
     width: 236px;
     position: absolute;
     top: 202px;
-    right: 85px;
+    right: 113px;
 }
 .top4{
     display: flex;
