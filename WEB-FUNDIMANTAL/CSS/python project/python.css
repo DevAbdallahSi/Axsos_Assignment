@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+body{
+    width: 970px;
+    background-color:  #245075; 
+    margin: 0 auto;
+}
+header {
+    display: flex;
+    justify-content:space-between ;
+    align-items: center;
+}
+header section {
+text-align: center;
+}
+
+header section p {
+    color: whitesmoke;
+    margin-left: 20px;
+    padding: 10px;
+}
+header section p span{
+    color: black;
+}
+header section p a {
+    color: yellowgreen;
+}
+.inputs{
+    /* border: 18px gray solid; */
+    background-color: darkslategray;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px black;
+    padding: 20px;
+}
+.inputs input {
+    padding: 8px;
+    text-align: center;
+
+}
+.inputs button{
+    background-color: #1a8eec;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px;
+    color: whitesmoke;
+    box-shadow: 2px 0px 0px 1px ;
+}
+
+
+
