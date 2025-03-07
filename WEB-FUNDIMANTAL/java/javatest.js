@@ -18,6 +18,11 @@ for(var dnum=100 ; dnum >= 0 ; dnum--){
 }
 
 
+for(var x=4 ; x <= 4 ; x-1.5 ){
+    if(x )
+}
+
+
 
 
 
