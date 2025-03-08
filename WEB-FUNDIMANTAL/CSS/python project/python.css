@@ -36,7 +36,7 @@ header section p a {
     background-color: #444444;
     border-radius: 10px;
     box-shadow: 2px 2px 2px black;
-    padding: 20px;
+    padding: 15px 30px;
 }
 .inputs input {
     padding: 8px;
@@ -44,12 +44,13 @@ header section p a {
 
 }
 .inputs button{
-    background-color: hsl(207, 85%, 51%);
-    padding: 5px;
+    background-color: hsl(207, 83%, 28%);
+    padding: 5px 10px;
     border-radius: 5px;
     border: 1px;
     color: whitesmoke;
     box-shadow: -1px 0px 1px 1px ;
+    margin-left: 5px;
 } 
 
 
@@ -87,7 +88,7 @@ margin-bottom: 20px;
 main{
     display: flex;
     width: 960px;
-    height: 500px;
+    height: 430px;
 }
 rightcontent p{
     color: whitesmoke;
@@ -96,13 +97,14 @@ rightcontent p{
     font-size: larger;
     text-align: center;
 }
+
 buttumarea {
     color: #efd34f;
     font-size: x-large;
     margin: 20px 0 0 200px;
     
 }
-buttumarea ul li {
+buttumarea ul {
     list-style: none;
     display: grid;
     place-items: center;
@@ -112,11 +114,12 @@ buttumarea ul li {
 .modifi{
     color: whitesmoke;
     font-style: unset;
+    font-style: normal;
 }
 undermain  {
     display: flex;
     background-color: whitesmoke;
-    align-content: center;
+
 }
 undermain leftside {
     width: 400px;
@@ -127,6 +130,11 @@ undermain leftside {
 leftside h3 {
     text-align: center;
     padding: 5px 0;
+}
+leftside p {
+    width: 350px;
+    text-align: center;
+    padding-left: 20px;
 }
 
 leftside ul li a {
@@ -146,22 +154,35 @@ rightside h3 {
 rightside a {
     display: grid;
     place-content: center;
+    text-decoration: none;
+    text-align: center;
+}
+rightside p{
+    text-align: center;
+    width: 100%;
+    height: 80px;
+    white-space: normal;
+}
+rightside p a {
+    display: inline;
+    white-space: nowrap;
 }
 footer{
     height: 100px;
     text-align: center;
+    padding-top: 30px;
+
 }
 footer a{
     text-decoration: none;
     color: whitesmoke;
-    margin: 20px;
+    margin: 10px;
     font-size: larger;
     font-family: sans-serif;
 }
 .cobyright {
     display: block;
     text-align: center;
-    
 }
 
 
