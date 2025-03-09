@@ -12,7 +12,7 @@ nav {
     display: flex;
     width: 800px;
     height: 80px;
-    background-color: gray;
+    background-color: #cccccc;
     align-items: center;
     justify-content: space-between;
 
@@ -30,9 +30,9 @@ nav input {
 nav button {
     background-color: blue;
     color: white;
-    padding: 3px 7px;
+    padding: 3px 10px;
     border: 1px solid black;
-    box-shadow: 2px 2px px 1px black;
+    box-shadow: 1px 1px 1px 2px black;
 }
 
 topleftcontent {
@@ -70,7 +70,9 @@ topleftcontent button {
 
 }
 rightsection {
-    text-: center;
+    text-align: center;
+    align-content: center;
+    font-family: sans-serif;
 }
 
 
@@ -81,6 +83,7 @@ buttumleftcontent {
     border: 3px solid black;
     padding: 20px;
     margin: 20px 0px;
+    font-family: sans-serif;
 }
 toprightcontent {
     display: block;
@@ -92,4 +95,44 @@ toprightcontent {
 container {
     margin: 0px;
 }
+buttumleftcontent button {
+    padding: 5px 10px;
+    border: 3px solid black;
+    box-shadow: 1px 1px 1px 2px;
+    background-color: yellow;
+    margin-top: 10px;
+}
+buttumleftcontent h1 {
+    margin-bottom: 10px;
+}
+buttumleftcontent h4 {
+    margin-bottom: 10px;
+    font-style: italic;
+}
+buttumleftcontent span {
+    font-style: normal;
+}
+toprightcontent  {
+    font-family: sans-serif;
+    font-weight: bold;
+    line-height: 30px;
+}
+toprightcontent p{
+    margin-left: 20px;
 
+}
+toprightcontent h4 {
+    margin: 20px 0px 0px 20px;
+}
+span { 
+    font-weight: bolder;
+    font-family: "Balsamiq Sans", sans-serif;
+}
+toprightcontent button {
+    padding: 5px 20px;
+    border: 3px solid black;
+    box-shadow: 1px 1px 1px 2px;
+    background-color: #92c47d;
+    margin-top: 10px;
+    margin-left: 20px;
+}

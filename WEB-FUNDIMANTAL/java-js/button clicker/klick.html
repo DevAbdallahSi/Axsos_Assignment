@@ -12,7 +12,7 @@
     <nav>
         <h1>Dojonary</h1>
         <input type="text" placeholder="Search">
-        <button>login</button>
+        <button onclick="changetext(this)">login</button>
     </nav>
     <main>
 
@@ -23,7 +23,7 @@
                     <h1>ninja</h1>
                     <h4>noun</h4>
                     <h4 class="text">plurat: <span>ninjas</span> </h4>
-                    <button>13 likes</button>
+                    <button onclick="alertme(this)">13 likes</button>
                 </leftsection>
 
                 <rightsection>
@@ -37,8 +37,8 @@
                 <leftsection>
                     <h1>ninja</h1>
                     <h4>noun</h4>
-                    <h4>plurat: ninjas</h4>
-                    <button>37 likes</button>
+                    <h4><span>plurat:</span>ninjas </h4>
+                    <button onclick="alertme(this)">37 likes</button>
                 </leftsection>
 
                 <rightsection>
@@ -51,10 +51,11 @@
 
         <toprightcontent>
             <h4>Dojonary is </h4>
-            <p>defined by you</p>
-            <button> Add Definition</button>
+            <p>defined by <span>you</span> </p>
+            <button onclick="hide(this)"> Add Definition</button>
         </toprightcontent>
     </main>
+    <script src="klicker.js"></script>
 </body>
 
 </html>
