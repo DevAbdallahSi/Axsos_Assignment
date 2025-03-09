@@ -1,6 +1,14 @@
 function changetext(element){
-    element.innerText = "logout"
+    
+    if( element.innerText==="login"){
+        element.innerText = "logout"
+    }
+    else{
+        element.innerText= "login"
+    }
 
+        
+    
 }
 
 function alertme(element){
