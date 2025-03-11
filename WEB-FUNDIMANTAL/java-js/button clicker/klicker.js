@@ -14,6 +14,10 @@ function changetext(element){
 function alertme(element){
     alert("ninja was liked")
 }
-function hide(element){
-    element.remove();
+// function hide(element){
+//     element.remove();
+// }
+function hide(){
+    var pass =document.getElementById("deletMe");
+    pass.remove();
 }

@@ -1,0 +1,121 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+/* header */
+header {
+    display: flex;
+    width: auto;
+    height: 80px;
+    background-color: #9fc5f8;
+    align-items: center;
+    justify-content: space-evenly;
+    color: white;
+}
+header ul {
+    display: flex;
+    list-style: none;
+
+}
+header ul li a {
+    margin: 20px 50px;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: x-large;
+    color: white;
+}
+
+/* navbar */
+nav {
+    display: flex;
+    align-items: center;
+    width: 1150px;
+    height: 80px;
+    justify-content: space-between;
+    border-bottom: 3px solid black;
+    font-family: sans-serif;
+    margin: 0 auto;
+margin-bottom: 30px;}
+
+leftnav {
+    font-weight: bold;
+    font-size: large;
+    }
+    leftnav select {
+        padding: 10px;
+        border: 3px solid black;
+    }
+
+        /* mainbody */
+    contant{
+        display: flex;
+        justify-content: space-around;
+        width: 1337px;
+        margin: 0 auto;
+
+    }
+
+sectionone {
+    /* justify-content: space-evenly; */
+/* align-content: center; */
+/* border: 3px solid black; */
+text-align: center;
+align-items: center;
+margin: 0 auto 10px;
+background-color: #eeeeee;
+width: 150px;
+height: 220px;
+font-weight: 900;
+}
+sectionone img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 10px 0px;
+}
+sectionone p {
+    margin-bottom: 10px;
+}
+sectionone span {
+    margin: 0px 23px;
+font-size: large;}
+.highttemp {
+    color: #cf2a27;
+}
+.lowtemp {
+color: #2b78e4;
+}
+article{
+    display: flex;
+    width: 1150px;
+    height: 120px;
+    margin: 0 auto;
+    border: 3px solid black;
+    justify-content: space-around;
+    align-content: center;
+    background-color: #eeeeee;
+    font-family: sans-serif;
+}
+article img {
+    width: 60px;
+    height: 60px;
+    margin: 30px;
+}
+article p {
+    width: 400px;
+    
+}
+article h2 {
+    margin: 10px;
+}
+.hight {
+    border: solid black 3px;
+    height: 50px;
+    padding: 3px 20px;
+    background-color: #9fc5f8;
+    margin: auto;
+    font-size: large;
+    box-shadow: 5px 4px 10px 7px rgba(30, 135, 210, 0.573);
+}
+
+

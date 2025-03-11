@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="weather.css">
+</head>
+
+<body>
+    <header>
+        <h1>DojoWeather</h1>
+        <ul id="sityName" onclick="choseSity()">
+            <li><a href="#">Burbank</a></li>
+            <li><a href="#">Chicago</a></li>
+            <li><a href="#">Dallas</a></li>
+        </ul>
+    </header>
+    <nav>
+        <h1>San Jose</h1>
+        <leftnav>
+            <label for="">show temperature in</label>
+            <select>
+                <option name="text" value="C">C&deg;</option>
+                <option value="text">F&deg;</option>
+            </select>
+        </leftnav>
+    </nav>
+    <main>
+        <contant>
+            <sectionone>
+                <h3>Today</h3>
+                <img src="some_rain.png" alt="cloudicon">
+                <p>some rain</p>
+                <span class="highttemp">24&deg;</span>
+                <span class="lowtemp">18&deg;</span>
+            </sectionone>
+            <sectionone>
+                <h3>Tomorrow</h3>
+                <img src="some_sun.png" alt="cloudicon">
+                <p>some rain</p>
+                <span class="highttemp">27&deg;</span>
+                <span class="lowtemp">19&deg;</span>
+            </sectionone>
+            <sectionone>
+                <h3>Friday</h3>
+                <img src="some_clouds.png" alt="cloudicon">
+                <p>some rain</p>
+                <span class="highttemp">21&deg;</span>
+                <span class="lowtemp">16&deg;</span>
+            </sectionone>
+            <sectionone>
+                <h3>Saturday</h3>
+                <img src="some_sun.png" alt="cloudicon">
+                <p>some rain</p>
+                <span class="highttemp">26&deg;</span>
+                <span class="lowtemp">21&deg;</span>
+            </sectionone>
+        </contant>
+        <article id="removeMe">
+            <img src="cookie.png" alt="cookie icon">
+            <div>
+                <h2>Stop! Cookie time</h2>
+                <p>We use cookies (sadly not the edible ones) to personalize
+                    content and ads, to provide social media features and to
+                    analyse our traffic. <a href="#">Read more</a>
+                </p>
+            </div>
+            <button onclick="hideMassage()" class="hight">I Accept</button>
+        </article>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="weather.js"></script>
+</body>
+
+</html>
