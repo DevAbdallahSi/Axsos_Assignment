@@ -1,27 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>JS Bin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Feed</title>
+    <link rel="stylesheet" href="likes.css">
+    <script>
+        function addNum(sectionId) {
+            const likeCountElement = document.getElementById(`likeCount${sectionId}`);
+            let count = parseInt(likeCountElement.textContent) + 1;
+            likeCountElement.textContent = count + ' Like(s)';
+        }
+    </script>
 </head>
+
 <body>
-  <div class="container">
-    <h1>Title</h1>
-    <div id="message">
-      <div class="header"><span>I am an Alert!</span><span>×</span></div>
-      <p>This is some arbitrary alert text!, don't worry about what it actually says!</p>
-      <button>OK</button>
-    </div>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum deleniti saepe odit pariatur delectus repudiandae atque illum aperiam possimus numquam vel, quo ducimus nulla est, id sunt optio eius voluptas. Repudiandae commodi temporibus aliquid illum beatae eveniet unde cum officia rem possimus aut cupiditate, sint rerum accusantium itaque explicabo tenetur voluptate necessitatibus corrupti provident praesentium?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum deleniti saepe odit pariatur delectus repudiandae atque illum aperiam possimus numquam vel, quo ducimus nulla est, id sunt optio eius voluptas. Repudiandae commodi temporibus aliquid illum beatae eveniet unde cum officia rem possimus aut cupiditate, sint rerum accusantium itaque explicabo tenetur voluptate necessitatibus corrupti provident praesentium?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum deleniti saepe odit pariatur delectus repudiandae atque illum aperiam possimus numquam vel, quo ducimus nulla est, id sunt optio eius voluptas. Repudiandae commodi temporibus aliquid illum beatae eveniet unde cum officia rem possimus aut cupiditate, sint rerum accusantium itaque explicabo tenetur voluptate necessitatibus corrupti provident praesentium?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum deleniti saepe odit pariatur delectus repudiandae atque illum aperiam possimus numquam vel, quo ducimus nulla est, id sunt optio eius voluptas. Repudiandae commodi temporibus aliquid illum beatae eveniet unde cum officia rem possimus aut cupiditate, sint rerum accusantium itaque explicabo tenetur voluptate necessitatibus corrupti provident praesentium?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum deleniti saepe odit pariatur delectus repudiandae atque illum aperiam possimus numquam vel, quo ducimus nulla est, id sunt optio eius voluptas. Repudiandae commodi temporibus aliquid illum beatae eveniet unde cum officia rem possimus aut cupiditate, sint rerum accusantium itaque explicabo tenetur voluptate necessitatibus corrupti provident praesentium?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum deleniti saepe odit pariatur delectus repudiandae atque illum aperiam possimus numquam vel, quo ducimus nulla est, id sunt optio eius voluptas. Repudiandae commodi temporibus aliquid illum beatae eveniet unde cum officia rem possimus aut cupiditate, sint rerum accusantium itaque explicabo tenetur voluptate necessitatibus corrupti provident praesentium?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum deleniti saepe odit pariatur delectus repudiandae atque illum aperiam possimus numquam vel, quo ducimus nulla est, id sunt optio eius voluptas. Repudiandae commodi temporibus aliquid illum beatae eveniet unde cum officia rem possimus aut cupiditate, sint rerum accusantium itaque explicabo tenetur voluptate necessitatibus corrupti provident praesentium?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum deleniti saepe odit pariatur delectus repudiandae atque illum aperiam possimus numquam vel, quo ducimus nulla est, id sunt optio eius voluptas. Repudiandae commodi temporibus aliquid illum beatae eveniet unde cum officia rem possimus aut cupiditate, sint rerum accusantium itaque explicabo tenetur voluptate necessitatibus corrupti provident praesentium?</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum deleniti saepe odit pariatur delectus repudiandae atque illum aperiam possimus numquam vel, quo ducimus nulla est, id sunt optio eius voluptas. Repudiandae commodi temporibus aliquid illum beatae eveniet unde cum officia rem possimus aut cupiditate, sint rerum accusantium itaque explicabo tenetur voluptate necessitatibus corrupti provident praesentium?</p>
-  </div>
+    <header>
+        <h1>Network</h1>
+    </header>
+    <nav>
+        <h1>Your Feed</h1>
+    </nav>
+    <!-- main body content -->
+    <main>
+        <aside>
+            <img src="user-circle.png" alt="User Avatar">
+            <a href="#">Add on avatar</a>
+            <h3>James Doe</h3>
+        </aside>
+        <!-- posts -->
+        <article>
+            <!-- first post -->
+            <section>
+                <div class="topbar">
+                    <h3>Neil M</h3>
+                    <div class="lefts">
+                        <h4 id="likeCount1">9 Like(s)</h4>
+                        <button onclick="addNum(1)">Like</button>
+                    </div>
+                </div>
+                <p>I just set up this new discord bot, let me know what you all think. <a href="#"> link</a></p>
+            </section>
+            <!-- second post -->
+            <section>
+                <div class="topbar">
+                    <h3>Nichole K</h3>
+                    <div class="lefts">
+                        <h4 id="likeCount2">12 Like(s)</h4>
+                        <button onclick="addNum(2)">Like</button>
+                    </div>
+                </div>
+                <p>Just finished my <a href="#">next coms</a>, check it out</p>
+            </section>
+            <!-- third post -->
+            <section>
+                <div class="topbar">
+                    <h3>Jim R</h3>
+                    <div class="lefts">
+                        <h4 id="likeCount3">9 Like(s)</h4>
+                        <button onclick="addNum(3)">Like</button>
+                    </div>
+                </div>
+                <p>I can't stop listening to the <a href="#">new album.</a> Who else is liking it?</p>
+            </section>
+        </article>
+    </main>
 </body>
+
 </html>

@@ -9,3 +9,7 @@ function changeUnit(){
     var fehren =document.getElementById("temperature");
     fehren.innerText="f";
 }
+function changevalue(){
+    var changeTemperatuer=document.querySelector(".highttemp");
+    changeTemperatuer.innerText=50;
+}
