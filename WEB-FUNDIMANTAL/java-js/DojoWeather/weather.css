@@ -1,7 +1,10 @@
 *{
     padding: 0;
     margin: 0;
+    
 }
+
+
 /* header */
 header {
     display: flex;
@@ -67,6 +70,9 @@ width: 150px;
 height: 220px;
 font-weight: 900;
 }
+sectionone h3 {
+    margin-top: 10px;
+}
 sectionone img {
     width: 100px;
     height: 100px;
@@ -79,10 +85,10 @@ sectionone p {
 sectionone span {
     margin: 0px 23px;
 font-size: large;}
-.highttemp {
-    color: #cf2a27;
+.hightTemp {
+    color: #a61210;
 }
-.lowtemp {
+.lowTemp {
 color: #2b78e4;
 }
 article{

@@ -11,19 +11,19 @@
 <body>
     <header>
         <h1>DojoWeather</h1>
-        <ul id="sityName" onclick="choseSity()">
-            <li><a href="#">Burbank</a></li>
-            <li><a href="#">Chicago</a></li>
-            <li><a href="#">Dallas</a></li>
+        <ul id="sityName">
+            <li><a onclick="choseSity(this)" href="#">Burbank</a></li>
+            <li><a onclick="choseSity(this)" href="#">Chicago</a></li>
+            <li><a onclick="choseSity(this)" href="#">Dallas</a></li>
         </ul>
     </header>
     <nav>
         <h1>San Jose</h1>
         <leftnav>
-            <label for="">show temperature in</label>
-            <select onclick="changevalue()">
-                <option name="text" >C&deg;</option>
-                <option value="text">F&deg;</option>
+            <label for="temperatureUnit">show temperature in</label>
+            <select id="temperatureUnit" onchange="changeValue()">
+                <option value="C">&deg;C</option>
+                <option value="F">&deg;F</option>
             </select>
         </leftnav>
     </nav>
@@ -33,29 +33,29 @@
                 <h3>Today</h3>
                 <img src="some_rain.png" alt="cloudicon">
                 <p>some rain</p>
-                <span class="highttemp(1)">24&deg;</span>
-                <span class="lowtemp(2)">18&deg;</span>
+                <span id="temp1" class="hightTemp">24</span>
+                <span id="temp2" class="lowTemp">18</span>
             </sectionone>
             <sectionone>
                 <h3>Tomorrow</h3>
                 <img src="some_sun.png" alt="cloudicon">
                 <p>suny</p>
-                <span class="highttemp(1)">27&deg;</span>
-                <span class="lowtemp(2)">19&deg;</span>
+                <span id="temp3" class="hightTemp">27</span>
+                <span id="temp4" class="lowTemp">19</span>
             </sectionone>
             <sectionone>
                 <h3>Friday</h3>
                 <img src="some_clouds.png" alt="cloudicon">
                 <p>cloudy</p>
-                <span class="highttemp(1)">21&deg;</span>
-                <span class="lowtemp(2)">16&deg;</span>
+                <span id="temp5" class="hightTemp">21</span>
+                <span id="temp6" class="lowTemp">16</span>
             </sectionone>
             <sectionone>
                 <h3>Saturday</h3>
                 <img src="some_sun.png" alt="cloudicon">
                 <p>suny</p>
-                <span class="highttemp(1)">26&deg;</span>
-                <span class="lowtemp(2)">21&deg;</span>
+                <span id="temp7" class="hightTemp">26</span>
+                <span id="temp8" class="lowTemp">21</span>
             </sectionone>
         </contant>
         <article id="removeMe">
@@ -70,30 +70,6 @@
             <button onclick="hideMassage()" class="hight">I Accept</button>
         </article>
     </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <script src="weather.js"></script>
 </body>
 
