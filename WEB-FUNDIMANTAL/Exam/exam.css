@@ -15,7 +15,8 @@ main{
     background-size: cover;
     background-repeat: no-repeat;
     width: auto;
-    height: 800px;
+    height: 500px;
+    background-size: 100% 100%;
 }
 
 header {
@@ -71,18 +72,18 @@ hr {
 section {
     text-align: center;
     color: white;
-    font-size: x-large;
+    font-size: large;
 
 }
 section p {
-    margin: 50px;
+    margin: 30px;
 
 }
 section button{
     padding: 8PX 30PX;
     background-color: #ea592d;
     color: white;
-    font-size: x-large;
+    font-size: large;
     border: 3px solid black;
     box-shadow: 3px 3px 3px 1px  black;
 }
@@ -110,7 +111,7 @@ article {
     justify-content: space-evenly;
 }
 article img {
-    width: 150px;
+    width: 100px;
     border-radius: 50%;
 
 }
