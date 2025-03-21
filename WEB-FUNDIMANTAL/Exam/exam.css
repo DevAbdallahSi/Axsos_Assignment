@@ -1,0 +1,133 @@
+/* auther_name : Dev_Abdallah salhi
+DATE : 2025_3_20
+phone_number ; 0569774786
+email : Abdallah.Salhi@axsos.com
+description : styling a Yoga weeb site  */
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+main{
+    background-image: url(yoga-header.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: auto;
+    height: 800px;
+}
+
+header {
+    display: flex;   
+    justify-content: space-between;
+}
+header > img {
+    margin: 10px 0 0 40px;
+    width: 150px;
+}
+header ul{
+    display: flex;
+    list-style: none;
+    margin: 20px 40px;
+    font-size: larger;
+}
+header a{
+    color: white;
+    margin: 10px;
+}
+
+header span {
+    color: white;
+}
+#search-button{
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+
+header input{
+    border-radius: 3px;
+    padding: 5px 30px;
+    width: 270px;
+}
+.search_icon {
+    position: absolute;
+    right: 350px;
+    top: 3px;
+    width: 25px;
+}
+.sound-icon {
+    width: 20px;
+    position: absolute;
+    top: 4px;
+    right: 55px;
+}
+hr {
+    margin: 30px 40px 100px ;
+}
+
+section {
+    text-align: center;
+    color: white;
+    font-size: x-large;
+
+}
+section p {
+    margin: 50px;
+
+}
+section button{
+    padding: 8PX 30PX;
+    background-color: #ea592d;
+    color: white;
+    font-size: x-large;
+    border: 3px solid black;
+    box-shadow: 3px 3px 3px 1px  black;
+}
+section_yoga_classes {
+    display: block;
+    background-color: white;
+}
+section_yoga_classes h1 {
+    margin: 25px;
+
+}
+section_yoga_classes p {
+    width: 400px;
+    margin: 0 auto;
+}
+
+section_yoga_classes div {
+    text-align: center;
+    margin:0px 10px 50px;
+    color: black;
+    font-size: larger;
+}
+article {
+    display: flex;
+    justify-content: space-evenly;
+}
+article img {
+    width: 150px;
+    border-radius: 50%;
+
+}
+footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #dd3d0c;
+    padding: 50px;
+}
+.linkedin-icon{
+    width: 30px;
+}
+footer p{
+    margin-left: 0px;
+    width: 500px;
+}
+footer div {
+    margin: 0;
+}

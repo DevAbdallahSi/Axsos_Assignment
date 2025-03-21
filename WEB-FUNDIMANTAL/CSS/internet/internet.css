@@ -1,0 +1,157 @@
+/*
+Author : dev_Abdallah Salhi
+Date : 19_3_2025
+Description : styles for internet assignment 
+*/
+*{
+    padding: 0;
+    /* margin: 0 auto; */
+    font-family: Arial, sans-serif;
+}
+
+               /* page header */ 
+header h1 {
+    margin: 40px 0 0 90px;
+    height: 50px;
+}
+header h1 span{
+    color: #25679b;
+}
+header h2 {
+    background-color: #336fa3;
+    color: whitesmoke;
+    height: 50px;
+    padding: 20px 0 0 10px;
+}
+header img {
+    width: 90px;
+    position: absolute;
+    top: 22px;
+    left: 1px;
+} 
+           /*   main_body_section  */
+.main_body {
+    display: flex;
+    width: 70%;
+}
+             /* aside_styling */
+aside {
+    position: relative;
+    margin: 50px 0 0 50px;
+    width: 210px;
+}
+aside h4 {
+    margin: 10px 0;
+}
+aside h4 span {
+    color: red;
+}
+aside p {
+    margin-bottom: 15px;
+}
+aside p span {
+    color: #2167a5;
+}
+aside input {
+    padding: 10px 20px;
+    background-color: #4984b5;
+    color: white;
+    border-radius: 8px;
+    width: 200px;
+    font-size: medium;
+    margin-bottom: 5px;
+}
+.aside_button {
+    background-color: #ee7801;
+}
+aside hr {
+    margin: 20px 0;
+}
+
+.aside_ad_img {
+    width: 200px;
+    position: relative;
+}
+aside div {
+    position: absolute;
+    top: 265px;
+    left: 25px;
+    width: 150px;
+    color: white;
+    text-align: center;
+}
+aside div p {
+    font-size: large;
+}
+.aside_ninja_img {
+    width: 80px;
+}
+.learn_more_button {
+    padding: 5px 20px;
+    background-color: #59cdde;
+    color: white;
+    border-radius: 8px;
+    width: 150px;
+    font-size: medium;
+    margin-top: 20px;
+}
+              /* nav_bar_area **********/
+nav {
+    justify-content: space-between;
+    width: 70%;
+    height: 100px;
+    margin: 5px 0 0 50px;
+    border-bottom: 2px solid black;
+}
+.roww {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+nav a {
+    color: #2167a5;
+    text-decoration: none;
+    font-size: larger;
+}
+.home_icon {
+    width: 40px;
+margin: 10px 0 0 0;
+}
+nav img {
+    width: 50px;
+    height: 50px;
+margin: 15px;}
+nav label {
+    color: #1abdd6;
+    font-size: xx-large;
+}
+.contact_information{
+    display: flex;
+}
+section {
+    /* position: absolute;
+    top: 300px;
+    left: 500px; */
+}
+article img {
+    width: 400px;
+    height: auto;
+    margin: 10px 150px;
+}
+
+.foter {
+    display: flex;
+    margin-top: 50px;
+    border: 8px solid rgb(10, 21, 179);
+    height: 1000px;
+}
+section article h2 {
+    margin: 20px;
+    color: #2167a5;
+}
+
+.the_big_language_img {
+    width: 200px;
+    height: 100px;
+    margin: 5px 20px 0 20px;
+}
