@@ -7,22 +7,21 @@ function press(num){
 
     }
 }           
-
-function setOP(simbol){
-    var disolayText = document.getElementById("display")
+var disolayText = document.getElementById("display")
     var firstNumber = disolayText.innerText
+function setOP(simbol){
+    disolayText 
+    firstNumber 
     var opx = simbol
     disolayText.innerText=0
+}
+console.log(setOP)
+// function calculate(){
     
+//     // var result = document.getElementById("equals").innerText;
+//     // result=    disolayText.innerText +firstNumber
 
-}
-function calculate(el){
-    var result = document.getElementById("equals").innerText;
-    // console.log(result)
-    press()
-    setOP()
-    console.log(calculate)
-}
+// }
 
 
 
