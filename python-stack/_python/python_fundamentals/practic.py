@@ -143,3 +143,4 @@
 # y = a()
 # print(y)
 # 1,3,5,10
+# print("abdallah" if 10>10 else "ahmad" )
