@@ -68,4 +68,14 @@ def maximum(list):
 def ultimate_analysis(list):
     qew={"sum":sum_total(list) ,"avg":average(list) ,"minimum":minimum(list),"maximum":maximum(list),"length":length(list)}
     return qew
-print(ultimate_analysis([37,2,1,-9]))
+# print(ultimate_analysis([37,2,1,-9]))
+
+# ////////////////////////////////////////////
+def reverse_list(list):
+    n=list
+    for i in range (n-1):
+        for x in range (n-1-i):
+            if (n[x]>n[x+1]):
+                (n[x],n[x+1]=n[x+1],n[x])
+    return i
+print(reverse_list([37,2,1,-9]))
