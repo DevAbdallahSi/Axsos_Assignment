@@ -72,10 +72,10 @@ def ultimate_analysis(list):
 
 # ////////////////////////////////////////////
 def reverse_list(list):
-    n=list
+    n=len(list)
     for i in range (n-1):
         for x in range (n-1-i):
-            if (n[x]>n[x+1]):
-                (n[x],n[x+1]=n[x+1],n[x])
-    return i
+            if list[x]>list[x+1]:
+                list[x],list[x+1]=list[x+1],list[x]
+    return list
 print(reverse_list([37,2,1,-9]))
