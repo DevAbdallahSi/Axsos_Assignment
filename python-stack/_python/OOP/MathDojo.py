@@ -1,37 +1,42 @@
 import unittest
 
+# MathDojo class with add and subtract methods
 class MathDojo:
     def __init__(self):
         self.result = 0
+    
     def add(self, num, *nums):
-        self.result+=num
-        for i in range (len(nums)):
-            self.result =self.result+nums[i]
+        self.result += num  # Add the first number
+        for i in range(len(nums)):  # Add each additional number
+            self.result += nums[i]
         return self
-    # print(add(5,7))
+    
     def subtract(self, num, *nums):
-        for i in range(len(nums)):
-            self.result -= (num + sum(nums))
+        self.result -= num  # Subtract the first number
+        for i in range(len(nums)):  # Subtract each additional number
+            self.result -= nums[i]
         return self
-    # print(subtract(10,7))
 
+# Test cases for the MathDojo class
 class sumTest(unittest.TestCase):
-    def __init__(self):
-        self.md = MathDojo()
-    def testone(self):
-        self.assertEqual(self.md.add(5,-6,5),4)
-    def testTow(self):
-        self.assertEqual(self.md.subtract(5,-6,5),-6)
-        
-# create an instance:
-md = MathDojo()
-# to test:
-x = md.add(2,2).add(2,5,1).add(3,3,1).subtract(3,2).result
-# print(x)    # should print 5
-# run each of the methods a few more times and check the result!,,
+    def setUp(self):
+        """This method will run before each test."""
+        self.md = MathDojo()  # Create a fresh instance of MathDojo for each test
 
+    def test_add(self):        
+        self.md.add(5, -6, 5)  # Add 5, -6, and 5
+        self.assertEqual(self.md.result, 4)  # The expected result is 4
+
+    def test_subtract(self):
+        self.md.subtract(5, -6, 5)  # Subtract 5, -6, and 5
+        self.assertEqual(self.md.result, -4)  # The expected result is -6
+
+    def test_combined_operations(self):
+        """Testing combined add and subtract operations"""
+        result = self.md.add(2, 2).add(2, 5, 1).add(3, 3, 1).subtract(3, 2).result
+        self.assertEqual(result, 14)  # The expected result is 5
 
 if __name__ == '__main__':
-    unittest.main() # this runs our tests
+    unittest.main()  # This runs all the test cases
 
 
