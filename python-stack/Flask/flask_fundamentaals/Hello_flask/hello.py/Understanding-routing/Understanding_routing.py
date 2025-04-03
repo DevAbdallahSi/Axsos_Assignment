@@ -14,7 +14,15 @@ def repeat(num,word):
     return (" ".join([word] * num))
 @app.errorhandler(404)
 def page_not_found(e):
-    return "oops somthing wint rong !"
+    return "oops somthing wint rong !"@app.errorhandler(404)
+# def page_not_found(e):
+#     return render_template("404.html"), 404
+# string	Accepts any text without a slash (the default)./
+
+# int	>>>>>>>.Accepts integers.
+# float	>>>>>>>.Like int but for floating point values.
+# path	>>>>>>>.Like string but accepts slashes.
+
     
 if __name__ == '__main__':
     app.run(debug=True)

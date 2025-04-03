@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play ground 1</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='play.css') }}">
+</head>
+<body>
+    <section>
+        <h1>Welcome</h1>
+        <article>
+            {% for i in range (num_boxes)%}
+            <div style='background-color: {{ color }}'></div>
+            {% endfor %}
+        </article>
+    </section>
+</body>
+</html>

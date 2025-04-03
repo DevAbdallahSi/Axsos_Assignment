@@ -2,7 +2,7 @@ from BankAccount import BankAccount
 class User :
     def __init__(self , user_name ):
         self.user_name=user_name
-        self.account = BankAccount(int_rate=0.02, balance=0)    # added this line
+        self.account = BankAccount(int_rate=0.02, balance=0)   
     def deposit(self,amount):
         self.account.deposit(amount)
         return self
@@ -30,7 +30,3 @@ bahaa.deposit(1000).withdrawal(500).withdrawal(500).withdrawal(500)
 salhi.transfer_money(bahaa,200).display_user_balance()
 frehat.display_user_balance()
 bahaa.display_user_balance()
-   
-       
-       
- 

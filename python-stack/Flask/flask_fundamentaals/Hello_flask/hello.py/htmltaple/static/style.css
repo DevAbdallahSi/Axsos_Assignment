@@ -1,0 +1,14 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+table{
+    margin: 200px auto;
+    border-collapse: collapse;
+
+}
+td,th{
+    border: 2px solid black;
+}
+
