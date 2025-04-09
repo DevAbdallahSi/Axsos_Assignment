@@ -11,7 +11,6 @@ def randInt(min=0, max=100):
     else:
         return rounded_num
 
-# Testing the function
 print(randInt())               # should print a random integer between 0 and 100
 print(randInt(max=50))          # should print a random integer between 0 and 50
 print(randInt(min=50))          # should print a random integer between 50 and 100

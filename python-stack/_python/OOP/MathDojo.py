@@ -19,7 +19,7 @@ class MathDojo:
 md=MathDojo(10)
 md.add(3,3)
 md.subtract(2)
-print(md.result)
+# print(md.result)
 # Test cases for the MathDojo class
 class sumTest(unittest.TestCase):
     def setUp(self):

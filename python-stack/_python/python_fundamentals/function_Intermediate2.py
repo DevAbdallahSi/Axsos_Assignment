@@ -70,21 +70,21 @@ def iterateDictionary(list,key1,key2):
 # iterateDictionary2('first_name',students)
 
 
-dojo = {
-   'locations': ['San Jose', 'Seattle', 'Dallas', 'Chicago', 'Tulsa', 'DC', 'Burbank'],
-   'instructors': ['Michael', 'Amy', 'Eduardo', 'Josh', 'Graham', 'Patrick', 'Minh', 'Devon']
-}
+# dojo = {
+#    'locations': ['San Jose', 'Seattle', 'Dallas', 'Chicago', 'Tulsa', 'DC', 'Burbank'],
+#    'instructors': ['Michael', 'Amy', 'Eduardo', 'Josh', 'Graham', 'Patrick', 'Minh', 'Devon']
+# }
 
-# ///////////////////////////////
-def printInfo(some_dict):
-    for i in  (some_dict):
-        # print(len(some_dict))
-        print(i,len(some_dict[i]))
-        for x in (some_dict[i]):
-            print(x)
-        print("")
+# # ///////////////////////////////
+# def printInfo(some_dict):
+#     for i in  (some_dict):
+#         # print(len(some_dict))
+#         print(i,len(some_dict[i]))
+#         for x in (some_dict[i]):
+#             print(x)
+#         print("")
 
 
-printInfo(dojo)
+# printInfo(dojo)
 
 
