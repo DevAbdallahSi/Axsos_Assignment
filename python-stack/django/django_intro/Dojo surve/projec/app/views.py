@@ -10,7 +10,6 @@ def result(request):
     Locations=request.POST["Locations"]
     languages=request.POST["languages"]
     dojo=request.POST["dojo"]
-      
     res={
         'name':name,
         'Locations':Locations,

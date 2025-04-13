@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+    <h1>🎉 You Win!</h1>
+<p>The correct number was {{ number }}</p>
+<p>You guessed it in {{ attempts }} attempts</p>
+
+<form method="POST" action="{% url 'submit_winner' %}">
+    {% csrf_token %}
+    <label>Your Name:</label>
+    <input type="text" name="name" required>
+    <button type="submit">Save Score</button>
+</form>
+
+</body>
+</html>

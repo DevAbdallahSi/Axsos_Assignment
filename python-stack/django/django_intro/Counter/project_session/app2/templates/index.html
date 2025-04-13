@@ -11,9 +11,16 @@
 </head>
 
 <body>
-    <h1>Counter: {{ counter }} times</h1>
-    <p>You have visited this page {{ counter }} times.</p>
-    
+    <h1>Counter: {{ salhi }} times</h1>
+    <p>You have visited this page {{ counter_index }} times.</p>
+    <p> <a href="destroy_session">clear counter</a></p>
+    <p><a href="addTwo">add2</a></p>
+    <!-- <form action="/" method="post">
+        {% csrf_token %}
+        <label for="submit">
+            <input type="submit" value="submit" name="submit">
+        </label>
+    </form> -->
 </body>
 
 </html>

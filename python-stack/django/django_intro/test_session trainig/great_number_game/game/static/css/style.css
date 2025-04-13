@@ -1,0 +1,17 @@
+/* static/css/style.css */
+body {
+    font-family: sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+div {
+    margin:20px auto ;
+    padding: 10px;
+    width: 200px;
+    height: 200px;
+    font-size: 20px;
+    background-color: red;
+    display: grid;
+    justify-content: space-around;
+}
