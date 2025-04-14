@@ -8,4 +8,9 @@ class Lion (Animal):
     def feed(self):
         self.health_level += 12
         self.happiness += 12
-    
+
+    def feed(self, test):
+        self.health_level = test
+
+
+lion1 = Lion("")

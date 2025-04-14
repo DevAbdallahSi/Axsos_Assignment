@@ -16,11 +16,11 @@ class BankAccount:
         self.balance += self.balance*(self.int_rate/100)
         return self
 
-AccountA=BankAccount(2,1000)
-AccountB=BankAccount(2,1000)
+# AccountA=BankAccount(2,1000)
+# AccountB=BankAccount(2,1000)
 
-AccountA.deposit(2000).deposit(1500).deposit(5000).withdraw(2000).yield_interest().display_account_info()
-AccountB.deposit(1000).deposit(1000).withdraw(1000).withdraw(800).withdraw(2000).withdraw(1000).yield_interest().display_account_info()
+# AccountA.deposit(2000).deposit(1500).deposit(5000).withdraw(2000).yield_interest().display_account_info()
+# AccountB.deposit(1000).deposit(1000).withdraw(1000).withdraw(800).withdraw(2000).withdraw(1000).yield_interest().display_account_info()
 
 
 

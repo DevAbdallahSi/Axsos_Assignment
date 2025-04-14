@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minning of Gold</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <header>
+        <!-- {% for i in holds%}   {% endfor %} -->
+        <label for="counter">Your Gold:
+            <input type="text" name="counter" value="{{request.session.hold}}" disabled>
+        </label>
+    </header>
+    <section>
+        <div>
+            <form action="process_money" method="post">
+                {% csrf_token %}
+                <p>Farm</p>
+                <p>(earns 10-20 gold)</p>
+                <input type="submit" value="Find Gold!" name="hold">
+                <input type="hidden" name="hide" value="farm">
+            </form>
+        </div>
+        <div>
+            <form action="process_money" method="post">
+                {% csrf_token %}
+                <p>Cave</p>
+                <p>(earns 10-20 gold)</p>
+                <input type="submit" value="Find Gold!" name="hold">
+                <input type="hidden" name="hide" value="cave">
+            </form>
+        </div>
+        <div>
+            <form action="process_money" method="post">
+                {% csrf_token %}
+                <p>House</p>
+                <p>(earns 10-20 gold)</p>
+                <input type="submit" value="Find Gold!" name="hold">
+                <input type="hidden" name="hide" value="house">
+            </form>
+        </div>
+        <div>
+            <form action="guess" method="post">
+                {% csrf_token %}
+                <p>Quest</p>
+                <p>(earns/takes 0-50 gold)</p>
+                <input type="submit" value="Find Gold!" name="hold">
+                <input type="hidden" name="hidethis" value="guest">
+            </form>
+        </div>
+        <div>
+            <form action="clearme" method="post">
+                {% csrf_token %}
+                <p>reset</p>
+                <p>start again</p>
+                <input type="submit" value="New game!" name="hold">
+            </form>
+        </div>
+    </section>
+    <article>
+        <h1>Activities:</h1>
+        <div class="result">
+            <p>{{x}}</p>
+        </div>
+    </article>
+</body>
+
+</html>

@@ -4,10 +4,10 @@ class User :
         self.user_name=user_name
         self.account = BankAccount(int_rate=0.02, balance=0)   
     def make_deposit(self, amount):
-        self.account+=(amount)
+        self.account.deposit(amount)
         return self
     def make_withdraw(self, amount):
-        self.account-=(amount)
+        self.account.withdraw(amount)
         return self
     def display_user_balance(self):
         print(self.user_name + " " +str(self.account.balance))
@@ -21,7 +21,7 @@ salhi=User("abdallah salhi")
 frehat=User("abdallah frehat")
 bahaa=User("bahaa enab")
 
-salhi.make_deposit(10000).make_deposit(1000).make_deposit(1000).make_withdraw(500)
+salhi.make_deposit(1000).make_deposit(1000).make_deposit(1000).make_withdraw(500)
 salhi.display_user_balance()
 # salhi.account.make_deposit(1000)
 

@@ -1,0 +1,30 @@
+header {
+    margin: 20px 100px;
+    font-weight: bold;
+}
+section{
+    display: flex;
+    justify-content: space-evenly;
+    margin: 30px;
+    text-align: center;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+div{
+    padding: 30px;
+    width: fit-content;
+    border: 2px solid black;
+}
+input{
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 2px ;
+    background-color: gold;
+}
+.result{
+    width: 600px;
+    height: 200px;
+}
+article{
+    margin: 50px 100px;
+}
