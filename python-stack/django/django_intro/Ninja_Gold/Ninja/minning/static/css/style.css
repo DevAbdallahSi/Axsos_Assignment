@@ -23,8 +23,16 @@ input{
 }
 .result{
     width: 600px;
-    height: 200px;
+    max-height: 200px;
+    overflow-y: scroll;
+
 }
 article{
     margin: 50px 100px;
+}
+.green{
+    color: green;
+}
+.red{
+    color: red;
 }

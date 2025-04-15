@@ -1,0 +1,97 @@
+$ python manage.py shell
+8 objects imported automatically (use -v 2 for details).
+
+Python 3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from dojo_app.models import *
+>>> Dojo.objects.creat(name = ahmad, city = ramallah, state = palestine)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Manager' object has no attribute 'creat'. Did you mean: 'create'?
+>>> Dojo.objects.create(name = ahmad, city = ramallah, state = palestine)
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'ahmad' is not defined
+>>> Dojo.objects.create(name = 'ahmad', city = 'ramallah', state = 'palestine')
+<Dojo: Dojo object (1)>
+>>> Dojo.objects.create(name = 'Abood', city = 'ramallah', state = 'canada')
+<Dojo: Dojo object (2)>
+>>> Dojo.objects.create(name = 'batata', city = 'nablus', state = 'canada')
+<Dojo: Dojo object (3)>
+>>> x=Dojo.objects.get(id=1)
+>>> c.delete()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'c' is not defined
+>>> x.delete()
+(1, {'dojo_app.Dojo': 1})
+>>> x=Dojo.objects.get(id=2)
+>>> x.delete()
+(1, {'dojo_app.Dojo': 1})
+>>> x=Dojo.objects.get(id=3)
+>>> x.delete()
+(1, {'dojo_app.Dojo': 1})
+>>> Dojo.objects.create(name = 'batata', city = 'nablus', state = 'canada')
+<Dojo: Dojo object (4)>
+>>> Dojo.objects.create(name = 'Abood', city = 'ramallah', state = 'canada')
+<Dojo: Dojo object (5)>
+>>> Dojo.objects.create(name = 'ahmad', city = 'ramallah', state = 'palestine')
+<Dojo: Dojo object (6)>
+$ py manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojo_app, sessions
+Running migrations:
+  No migrations to apply.
+  Your models in app(s): 'dojo_app' have changes that are not yet reflected in a migration, and so won't be applied.
+  Run 'manage.py makemigrations' to make new migrations, and then re-run 'manage.py migrate' to apply them.
+(Djangovenv)
+lenovo@Abdallah-salhi-DV MINGW64 ~/OneDrive/desktop/axsos2/Axsos_Assignment/Axsos_Assignment/python-stack/django/django_orm/Dojo (master)
+$ py manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 15, 2025 - 20:09:39
+Django version 5.2, using settings 'Dojo.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CTRL-BREAK.
+
+WARNING: This is a development server. Do not use it in a production setting. Use a production WSGI or ASGI server instead.
+For more information on production servers see: https://docs.djangoproject.com/en/5.2/howto/deployment/
+
+(Djangovenv)
+lenovo@Abdallah-salhi-DV MINGW64 ~/OneDrive/desktop/axsos2/Axsos_Assignment/Axsos_Assignment/python-stack/django/django_orm/Dojo (master)
+$ py manage.py makemigrations
+It is impossible to add a non-nullable field 'desc' to dojo without specifying a default. This is because the database needs something to populate existing rows.
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit and manually define a default value in models.py.
+Select an option: 1
+Please enter the default value as valid Python.
+The datetime and django.utils.timezone modules are available, so it is possible to provide e.g. timezone.now as a value.
+Type 'exit' to exit this prompt
+8 objects imported automatically (use -v 2 for details).
+
+Python 3.13.2 (tags/v3.13.2:4f8bb39, Feb  4 2025, 15:23:48) [MSC v.1942 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> Dojo.objects.creat(name ='yazan' city='reode',state='brazil', desc='coderr'  )
+  File "<console>", line 1
+    Dojo.objects.creat(name ='yazan' city='reode',state='brazil', desc='coderr'  )
+                             ^^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+>>> Dojo.objects.creat(name ='yazan' city='reode',state='brazil', desc='coderr')
+  File "<console>", line 1
+    Dojo.objects.creat(name ='yazan' city='reode',state='brazil', desc='coderr')
+                             ^^^^^^^^^^^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+>>> Dojo.objects.creat(name ='yazan' ,city='reode',state='brazil', desc='coderr')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Manager' object has no attribute 'creat'. Did you mean: 'create'?
+>>> Dojo.objects.create(name ='yazan' ,city='reode',state='brazil', desc='coderr')
+<Dojo: Dojo object (7)>
+>>>
+
+
