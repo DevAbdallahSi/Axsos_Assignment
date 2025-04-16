@@ -26,6 +26,7 @@ def miner(request):
     return redirect('/')
 
 
+
 def proses(request):
     if request.method == 'POST':
         number = random.randint(-50, 50)
