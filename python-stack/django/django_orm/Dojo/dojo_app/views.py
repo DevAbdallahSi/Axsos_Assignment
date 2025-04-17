@@ -2,23 +2,31 @@ from django.shortcuts import render ,redirect
 from . import models
 def index(request):
 
-    if 'new_dojo' not in request.session or 'dojo_list' not in request.session:
-        request.session['new_dojo']=[]
-        # request.session['dojo_list']=[]
-
-        context={
-            'new_dojo':request.session['new_dojo']
+    context={
+        'dojos': models.get_dojos(),
+        'ninjas':models.get_ninjas()
         }
     return render(request, 'index.html',context)
 
 def add_dojo(request):
     if request.method == 'POST':
-        add_new_dojo=models.add_dojo(request.POST)
-        if 'new_dojo' not in request.session:
-            request.session['new_dojo']=add_new_dojo
-            request.session['new_dojo'].append(add_new_dojo)
+        models.add_dojo(request.POST)
+        return redirect('/')
+    else:
+        return redirect('/')
 
 
+def add_ninjas(request):
+    if request.method == 'POST':
+        models.add_ninja(request.POST)
+        return redirect('/')
+    else:
+        return redirect('/')
+
+
+def  delete_dojo_form(request):
+    if request.method == 'POST':
+        models.delete_dojo(request.POST)
         return redirect('/')
     else:
         return redirect('/')

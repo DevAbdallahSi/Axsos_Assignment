@@ -24,17 +24,17 @@
                             {% csrf_token %}
                             <div class="mb-3">
                                 <label class="form-label">Name</label>
-                                <input type="text" name="Dojo_Name" class="form-control">
+                                <input required type="text" name="Dojo_Name" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">City</label>
-                                <input type="text" name="City_Name" class="form-control">
+                                <input required type="text" name="City_Name" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">State</label>
-                                <input type="text" name="State_Name" class="form-control">
+                                <input required type="text" name="State_Name" class="form-control">
                             </div>
-                            <button type="submit" class="btn btn-primary">Add Dojo</button>
+                            <button type="submit" class="btn btn-primary w-100">Add Dojo</button>
                         </form>
                     </div>
                 </div>
@@ -45,37 +45,58 @@
                 <div class="card shadow">
                     <div class="card-body">
                         <h3 class="card-title">Add a Ninja</h3>
-                        <form action="" method="post">
+                        <form action="add_ninja_form" method="post">
                             {% csrf_token %}
                             <div class="mb-3">
                                 <label class="form-label">First Name</label>
-                                <input type="text" name="First_Name" class="form-control">
+                                <input required type="text" name="First_Name" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Last Name</label>
-                                <input type="text" name="Last_Name" class="form-control">
+                                <input required type="text" name="Last_Name" class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Dojo</label>
                                 <select name="Dojo_select" class="form-select">
-                                    {% for x in new_dojo %}
-                                    <option selected disabled>- Select a dojo -{{x}}</option>
+                                    {% for dojo in dojos %}
+                                    <option value="{{dojo.id}}">{{dojo.name}}</option>
                                     {% endfor %}
-                                    <!-- You can loop dojo options here -->
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-success">Add Ninja</button>
+                            <button type="submit" class="btn btn-success w-100">Add Ninja</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
 
-        <hr>
+        <hr class="my-5">
 
         <div class="mt-5">
-            <h2 class="text-center">All the Dojos</h2>
-            <!-- Add your dojo list here -->
+            <h2 class="text-center mb-4">All the Dojos</h2>
+
+            {% for dojo in dojos %}
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">{{ dojo.name }} - {{ dojo.city }}, {{ dojo.state }}</h5>
+                        <form action="clear_dojo_botton" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <input type="hidden" name="clear_dojo" value="{{ dojo.id }}">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </div>
+                    <hr>
+                    <ul class="list-group list-group-flush">
+                        {% for ninja in ninjas %}
+                            {% if ninja.dojo_id.id == dojo.id %}
+                                <li class="list-group-item">{{ ninja.first_name }} {{ ninja.last_name }}</li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
         </div>
     </div>
 
