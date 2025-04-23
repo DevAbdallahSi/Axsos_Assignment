@@ -1,5 +1,30 @@
 from django.db import models
+from datetime import date,datetime
 
+class ShowManager(models.Manager):
+    def basic_validator(self, post):
+        errors = {}
+        if not all([post['title'], post['network'], post['release_date'], post['description']]):
+            errors["required"] = "All fields are required"
+        if len(post['title']) < 2:
+            errors ['title_not_correct']='title name should be at least 2 characters'
+        if len(post['network']) < 3:
+            errors ['network_not_correct']='network name should be at least 3 characters'
+        if len(post['description']) < 3:
+            errors ['description_not_correct']='description name should be at least 10 characters'   
+        # if post['release_date'] > date.today():
+        #     errors["release_date"] = "Release date must be in the past"
+        if post['release_date'] == '':
+            release_date = date.today()
+            errors["release_date"] = "Release date must not be empty"
+        else:
+            release_date = datetime.strptime(post['release_date'], '%Y-%m-%d').date()
+        if release_date > date.today():
+            errors["release_date"] = "Release date must be in the past"
+            
+        if Show.objects.filter(title=post['title']).exists():
+                errors["title"] = "This title already exists. Please choose another."
+        return errors
 
 class Show(models.Model):
     title = models.CharField(max_length=255)
@@ -8,6 +33,7 @@ class Show(models.Model):
     description = models.TextField(default='')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects = ShowManager()
 
 
 
@@ -34,4 +60,5 @@ def update_the_show(post,newid):
 def delete_the_show(showid):
     show = Show.objects.get(id=showid)
     show.delete()
-    
+
+

@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect,HttpResponse
 from . import models
+from django.contrib import messages
 #           all shows page 
 def index(request):
     return redirect('/shows')
@@ -23,8 +24,14 @@ def display_created_show(request,newid):
 
 def shows_create(request):
     if request.method == 'POST':
-        newid=models.shows_create(request.POST)
-    return redirect('/display_created_show/'+newid) #    return redirect(f'/display_created_show/{newid}')
+        errors = models.Show.objects.basic_validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)# redirect the user back to the form to fix the 
+            return redirect('/shows/new')
+        else:
+            newid=models.shows_create(request.POST)
+            return redirect(f'/display_created_show/{newid}') #    return redirect(f'/display_created_show/{newid}')
 
 
 def update_the_selected_show_page(request,newid):
@@ -35,8 +42,15 @@ def update_the_selected_show_page(request,newid):
 
 def update_the_show(request,newid):
     if request.method == 'POST':
-        models.update_the_show(request.POST,newid)
-    return redirect(f'/display_created_show/{newid}')
+        errors = models.Show.objects.basic_validator(request.POST)
+        if len(errors) > 0:
+            for key, value in errors.items():
+                messages.error(request, value)# redirect the user back to the form to fix the 
+            return redirect(f'/update_the_selected_show/{newid}/edit')
+        else:
+            models.update_the_show(request.POST,newid)
+            return redirect(f'/display_created_show/{newid}')
+    
 def delete_the_show(request,showid):
     models.delete_the_show(showid)
     return redirect('/shows')

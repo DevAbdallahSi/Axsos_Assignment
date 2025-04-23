@@ -17,8 +17,9 @@
         <thead>
             <tr>
                 <th scope="col">ID</th>
+                <th scope="col">Title</th>
                 <th scope="col">Network</th>
-                <th scope="col">Release Date</th>
+                <th scope="col">release_date</th>
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -28,6 +29,7 @@
                 <td>{{ show.id }} </td>
                 <td>{{ show.title }}</td>
                 <td>{{ show.network }}</td>
+                <td>{{ show.release_date }}</td>
                 <td>
                     <a href="display_created_show/{{show.id}}">Show |</a>
                     <a href="update_the_selected_show/{{show.id}}/edit">Edit |</a>
