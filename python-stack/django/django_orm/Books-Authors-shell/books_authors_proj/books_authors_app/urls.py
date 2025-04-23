@@ -12,6 +12,7 @@ urlpatterns = [
     #############
     path('author_page', views.show_author_page),
     path('add_author', views.add_new_author),
+    
     path('print_the_selected_author/<int:id>',views.print_the_selected_author),
     path('add_new_book_to_author/<int:id>',views.add_new_book_to_author)
 ]

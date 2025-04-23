@@ -13,6 +13,7 @@ def add_new_book(post):
     Book.objects.create(title = book_title, desc=book_details)
 
 def get_all_books():
+    
     return Book.objects.all()
 # >>>>>>>>>>>>>>>>>>  books_page setup <<<<<<<<<<<<<<<<
 def get_book_by(id):
