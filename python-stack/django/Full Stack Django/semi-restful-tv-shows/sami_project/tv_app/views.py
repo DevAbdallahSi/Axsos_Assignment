@@ -31,7 +31,7 @@ def shows_create(request):
             return redirect('/shows/new')
         else:
             newid=models.shows_create(request.POST)
-            return redirect(f'/display_created_show/{newid}') #    return redirect(f'/display_created_show/{newid}')
+            return redirect(f'/display_created_show/{newid}') #    return redirect('/display_created_show/'+newid)
 
 
 def update_the_selected_show_page(request,newid):

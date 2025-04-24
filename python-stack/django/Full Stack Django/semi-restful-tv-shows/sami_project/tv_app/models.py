@@ -21,7 +21,7 @@ class ShowManager(models.Manager):
             release_date = datetime.strptime(post['release_date'], '%Y-%m-%d').date()
         if release_date > date.today():
             errors["release_date"] = "Release date must be in the past"
-            
+
         if Show.objects.filter(title=post['title']).exists():
                 errors["title"] = "This title already exists. Please choose another."
         return errors
@@ -34,6 +34,7 @@ class Show(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = ShowManager()
+    
 
 
 
