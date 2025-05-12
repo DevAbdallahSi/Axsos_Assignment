@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>welcome: {{user.first_name}}</h1> 
+    <a href="destroy_session">Log out</a>
+    <h2>Add a favorite Book</h2>
+    <form action="add_book" method="post" class="mb-5">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="title" class="form-control" id="title">
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="description" class="form-control" id="description" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <ul>
+        <h2>All Books</h2>
+        {% for book in all_book %}
+        <li><a href="/show_book_details/{{book.id}}">{{book.title }}</a></li>
+        <li>(Add by:{{user.first_name}}{{user.last_name}})</li>
+        {% if book in favorites %}
+            <li>this is one of your favorite</li>
+        {% else %}
+            <li><a href="/add_to_favorite/{{book.id}}">Add to favorite</a></li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+</body>
+
+</html>

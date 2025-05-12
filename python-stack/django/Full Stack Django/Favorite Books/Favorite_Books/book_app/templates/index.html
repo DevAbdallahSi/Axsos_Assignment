@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div style="display: flex; justify-content: space-between;">
+        <div>
+            <h2>Registration</h2>
+            <form action="/register_form" method="POST">
+                {% csrf_token %}
+                <label>First Name:</label><br>
+                <input type="text" name="first_name"><br>
+                <label>Last Name:</label><br>
+                <input type="text" name="last_name"><br>
+                <label>Email:</label><br>
+                <input type="email" name="email"><br>
+                <label>Password:</label><br>
+                <input type="password" name="password"><br>
+                <label>Confirm PW:</label><br>
+                <input type="password" name="confirm_pw"><br><br>
+                <input type="submit" value="Register">
+            </form>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        <div>
+            <h2>Login</h2>
+            <form action="/login_form" method="POST">
+                {% csrf_token %}
+                <label>Email:</label><br>
+                <input type="email" name="email_log"><br>
+                <label>Password:</label><br>
+                <input type="password" name="password"><br><br>
+                <input type="submit" value="Log In">
+            </form>
+            {%if "email_log" in message.tags %}
+            {%for message in messages%}
+            <p>{{message}}</p>
+            {%endfor%}
+            {%endif%}
+        </div>
+    </div>
+</body>
+
+</html>
