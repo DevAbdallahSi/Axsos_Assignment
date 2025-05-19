@@ -5,24 +5,26 @@ public class Order {
 
     private String name;
     public double total;
-    private boolean ready=true;
-    private ArrayList<Item> items;
+    private boolean ready;
+    private ArrayList<Item> items=new ArrayList<>();
 
     public Order() {
         name = "Guest";
-        ArrayList<Item> items;
+        ready=false;
+        items = new ArrayList<Item>();
     }
 
     public Order(String name) {
         this.name = name;
+        ready=false;
     }
 
-    public Order(String name, double total, boolean ready, ArrayList<Item> items) {
-        this.name = name;
-        this.total = total;
-        this.ready = ready;
-        this.items = items;
-    }
+    // public Order(String name, double total, boolean ready, ArrayList<Item> items) {
+    //     this.name = name;
+    //     this.total = total;
+    //     this.ready = ready;
+    //     this.items = items;
+    // }
 
     public String getName() {
         return name;
@@ -56,7 +58,7 @@ public class Order {
         }
     }
 
-    public double getOrderTotal(ArrayList<Item> items) {
+    public double getOrderTotal() {
         for (Item item : items) {
             if (item != null) {
                 total+=item.getPrice();
@@ -80,6 +82,6 @@ public class Order {
                 System.out.println("ther is no order");
             }
         }
-        System.out.printf("Total:$%.2f", total);
+        System.out.printf("Total:$%.2f\n", total);
     }
 }
