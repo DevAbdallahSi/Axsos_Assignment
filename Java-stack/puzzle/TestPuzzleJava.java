@@ -1,13 +1,16 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 public class TestPuzzleJava {
     
     public static void main(String[] args) {
         Puzzle generator = new Puzzle();
-        ArrayList<Integer> ranNums = new ArrayList<>();
-        generator.getTenRolls(ranNums);
-        System.out.println(ranNums);
-        char [] letter = new char[26];
-        generator.getRandomLetter(letter);
-        System.out.println(letter);
+
+        // System.out.println(Arrays.toString(generator.getTenRolls()));
+        
+        // System.out.println(generator.getRandomLetter());
+        // System.out.println(generator.generatePassword());
+        System.out.println(Arrays.toString(generator.generateRandomWords(5)));
+        
+
     }
 }
