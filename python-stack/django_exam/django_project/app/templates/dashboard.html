@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2> Welcome {{user.first_name }} to Devlopers Dashnoard!</h2>
+    <a href="/destroy_session">Log Out</a>
+    <hr>
+    <form action="/create_project" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Create Projest +">
+    </form>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">project Name</th>
+                <th scope="col">project_owner</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+            <tr>
+                <td>{{ project.id }} </td>
+                <td><a href="/project/{{project.id}}/details">{{ project.project_name }}</a></td>
+                <td>{{project.add_by.first_name}}</td>
+                <td>
+                    <a href="">hello</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+</body>
+</html>

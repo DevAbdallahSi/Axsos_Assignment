@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Login & Register</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      width: 300px;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .close {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Create Department</h2>
+  
+  <div id="register-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="close-modal">&times;</span>
+      <h3>Register</h3>
+      <form id="register-form">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username" required><br>
+        <input type="email" name="email" placeholder="Email" required><br>
+        <input type="password" name="password" placeholder="Password" required><br>
+        <button type="submit">Register</button>
+      </form>
+      <div id="register-response"></div>
+    </div>
+  </div>
+  <form id="login-form">
+    {% csrf_token %}
+    <label for="department Name">department Name</label>
+    <input type="text" name="username" placeholder="Username" required><br>
+    </label>
+    <label for="description">description
+      <input type="password" name="password" placeholder="Password" required><br>
+    </label>
+    <button type="submit">add department</button>
+  </form>
+  <p>Don't have an account? <a href="#" id="open-register">Register here</a></p>
+  <div id="login-response"></div>
+
+  <script>
+    $('#login-form').submit(function (e) {
+      e.preventDefault();
+      $.ajax({
+        type: 'POST',
+        url: '/ajax-login/',
+        data: $(this).serialize(),
+        success: function (response) {
+          window.location.href = '/dashboard/';
+        },
+        error: function (xhr) {
+          $('#login-response').html('<p style="color:red;">' + xhr.responseJSON.message + '</p>');
+        }
+      });
+    });
+    $('#open-register').click(function (e) {
+      e.preventDefault();
+      $('#register-modal').show();
+    });
+
+    $('#close-modal').click(function () {
+      $('#register-modal').hide();
+    });
+
+
+    $('#register-form').submit(function (e) {
+      e.preventDefault();
+      $.ajax({
+        type: 'POST',
+        url: '/ajax-register/',
+        data: $(this).serialize(),
+        success: function (response) {
+          $('#register-response').html('<p style="color:green;">' + response.message + '</p>');
+          setTimeout(function () {
+            $('#register-modal').hide();
+            $('#register-response').html('');
+            $('#register-form')[0].reset();
+          }, 1500);
+        },
+        error: function (xhr) {
+          $('#register-response').html('<p style="color:red;">' + xhr.responseJSON.message + '</p>');
+        }
+      });
+    });
+  </script>
+</body>

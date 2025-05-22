@@ -1,0 +1,29 @@
+
+This Django project provides a user login and registration system using AJAX and a popup modal.
+
+Files included:
+----------------
+1. login.html:
+   - Displays the login form.
+   - Includes a "Register here" link that opens a popup form.
+   - Both forms submit data using AJAX, so the page does not reload.
+
+2. dashboard.html:
+   - A simple page shown after successful login.
+   - Displays the logged-in user's name.
+
+3. views.py:
+   - login_page: Renders the login page.
+   - ajax_login: Authenticates users and logs them in (AJAX POST).
+   - ajax_register: Registers a new user if username is unique (AJAX POST).
+   - dashboard: Displays a welcome message to logged-in users.
+
+4. urls.py:
+   - Maps the routes to the corresponding views.
+
+How it works:
+--------------
+- Users visit /login-page/ to log in or register.
+- Clicking "Register here" opens a modal form.
+- After a successful login, the user is redirected to /dashboard/.
+- After a successful registration, the modal closes and clears the form.

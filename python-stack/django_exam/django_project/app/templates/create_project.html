@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>welcome: {{user.first_name}}</h1>
+    <a href="/destroy_session">Log out</a>
+    <h2>Create Project</h2>
+
+    <form action="/add_project" method="post" class="mb-5">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="project_name" class="form-label">Project Name</label>
+            <input type="text" name="project_name" class="form-control" id="project_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea name="description" class="form-control" id="description" rows="3" required></textarea>
+            <label for="start_date" class="form-label">start_date</label>
+            <input type="date" name="start_date" class="form-control" id="start_date" required>
+            <label for=" end_date" class="form-label">end_date</label>
+            <input type="date" name="end_date" class="form-control" id="end_date" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+    <form action="/back_to_dashboared" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Back">
+    </form>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+
+</html>

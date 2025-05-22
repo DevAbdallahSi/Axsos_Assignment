@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>{{projects_id.project_name}}</h1>
+    <a href="/destroy_session">Log out</a>
+    <form action="/back_to_dashboared" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Dashboard">
+    </form>
+    {% csrf_token %}
+    <p>project_name: {{projects_id.project_name}}</p>
+    <p>project owner-{{projects_id.add_by.first_name }}</p>
+    <p>{{projects_id.desc}}</p>
+    {% if user.id is projects_id.add_by.id %}
+    <form action="/editproject/{{projects_id.id}}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Edit_project">
+    </form>
+    {% endif %}
+    <form action="/remove_this_project/{{projects_id.id}}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Delete Project">
+    </form>
+
+
+</body>
+
+</html>
