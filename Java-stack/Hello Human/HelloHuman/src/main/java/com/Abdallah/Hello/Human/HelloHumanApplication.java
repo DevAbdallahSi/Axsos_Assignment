@@ -22,7 +22,7 @@ public class HelloHumanApplication {
 	public String name(@RequestParam(value="q",defaultValue = "hi") String searchQuery,@RequestParam(value="last" ,defaultValue = "") String lastname,@RequestParam(value="times" ,defaultValue = "1") int times) {
 		String result  = "";
 		for(int i = 0; i<times;i++) {
-		result += "Hello " + searchQuery+lastname;
+		result += "Hello " + searchQuery+" - "+lastname;
 	}
 		return result;
 	}
