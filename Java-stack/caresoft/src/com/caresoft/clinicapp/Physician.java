@@ -14,18 +14,23 @@ public class Physician extends User implements HIPAACompliantUser {
     // TO DO: Implement HIPAACompliantUser!
     @Override
     public boolean assignPin(int pin){
-        if (super.setPin() == pin){
+        int number = String.valueOf(pin).length();
+        if (number == 4){
+            setPin(pin);
+            return true;
         }
         else {
             System.out.println("your pin is in correct ");
+            return false;
         }
-        return true;
     }
     @Override
     public boolean accessAuthorized(Integer confirmedAuthID){
-        if (super.getId() == confirmedAuthID){
+        if(this.id.equals(confirmedAuthID)){
+            return true;
+        }else{
+            return false;
         }
-        return true;
     }
     
 	
