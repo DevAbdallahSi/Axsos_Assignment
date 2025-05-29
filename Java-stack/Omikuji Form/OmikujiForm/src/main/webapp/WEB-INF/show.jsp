@@ -7,9 +7,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
-	<p> <c:out value="${sessionScope.number}" /> <c:out value="${sessionScope.name_city}" /> <c:out value="${sessionScope.name_person}" /> <c:out value="${sessionScope.professional}" /> <c:out value="${sessionScope.nice}" /></p>
-	
+<div class="container mt-5">
+    <div class="card p-4 shadow-sm">
+        <h2 class="mb-4">Your Omikuji Result</h2>
+
+        <p><strong>Number:</strong> <c:out value="${sessionScope.number}" /></p>
+        <p><strong>City:</strong> <c:out value="${sessionScope.name_city}" /></p>
+        <p><strong>Person:</strong> <c:out value="${sessionScope.name_person}" /></p>
+        <p><strong>Professional or Hobby:</strong> <c:out value="${sessionScope.professional}" /></p>
+        <p><strong>Nice Message:</strong> <c:out value="${sessionScope.nice}" /></p>
+
+        <a href="/" class="btn btn-secondary mt-3">Go Back</a>
+    </div>
+</div>
 </body>
 </html>
