@@ -49,9 +49,11 @@ public class BookController {
 			return "details";
 		}
 	 	
-	 	@GetMapping("/book")
-	 	public String show() {
-	 		return "details";
+	 	@GetMapping("/book/{id}/details")
+	 	public String show(@PathVariable Long id ,Model model) {
+	 		Book book =page.findBook(id);
+	 		model.addAttribute("book", book);
+			return "details";
 	 	}
 	 	
 	 	@GetMapping("/books")

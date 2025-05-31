@@ -18,28 +18,30 @@
        
 
         <div class="mb-3">
-            <label class="form-label">Enter the name of any city</label>
+            <label class="form-label">Enter the name of a Book</label>
             <input type="text" name="title" class="form-control">
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Enter the name of any real person</label>
+            <label class="form-label">Enter the description of the book</label>
             <input type="text" name="description" class="form-control">
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Enter professional endeavor or hobby</label>
+            <label class="form-label">Enter language of the book</label>
             <input type="text" name="language" class="form-control">
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Enter any type of living thing</label>
+            <label class="form-label">Enter the number of pages</label>
             <input type="text" name="pages" class="form-control">
         </div>   
         <div class="d-grid">
-            <button type="submit" class="btn btn-primary">Send & Show a Friend</button>
+            <button type="submit" class="btn btn-primary">Add new Book</button>
         </div>     
     </form>
+    	<a href="/books"  class="text-primary text-decoration-underline">Books Page</a>
+    
 </div>
 
  

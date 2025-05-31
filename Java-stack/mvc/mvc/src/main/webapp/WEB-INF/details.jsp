@@ -7,11 +7,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	<p>${title}</p>
-	<p>${description}</p>
-	<p>${language}</p>
-	<p>${pages}</p>
+	<div class="container mt-4 p-4 border rounded bg-light shadow">
+    <h3 class="text-primary">${book.title}</h3>
+    <p><strong>Description:</strong> ${book.description}</p>
+    <p><strong>Language:</strong> ${book.language}</p>
+    <p><strong>Pages:</strong> ${book.numberOfPages}</p>
+</div>
+
+	<a href="/books"  class="text-primary text-decoration-underline">Books Page</a>
+	
 </body>
 </html>
