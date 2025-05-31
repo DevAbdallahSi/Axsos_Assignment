@@ -1,5 +1,6 @@
 package com.example.demo.models;
 import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,19 +19,52 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @NotNull
     @Size(min = 5, max = 200)
     private String title;
+    
     @NotNull
     @Size(min = 5, max = 200)
     private String description;
+    
     @NotNull
     @Size(min = 5)
     @Column(columnDefinition="TEXT")
     private String language;
+    
+    @NotNull
+    @Min(100)
+    private Integer numberOfPages;
+    
+    // This will not allow the createdAt column to be updated after creation
+    @Column(updatable=false)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date createdAt;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date updatedAt;
+    
+    public Book() {
+    }
+    public Book(String title, String desc, String lang, int pages) {
+    	this.title = title;
+    	this.description = desc;
+    	this.language = lang;
+    	this.numberOfPages = pages;
+    }
+    
+    // other getters and setters removed for brevity
+    @PrePersist
+    protected void onCreate(){
+    	this.createdAt = new Date();
+    }
     public Long getId() {
-		return id;
-	}
+    	return id;
+    }
+    @PreUpdate
+    protected void onUpdate(){
+    	this.updatedAt = new Date();
+    }
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -58,45 +92,6 @@ public class Book {
 	public void setNumberOfPages(Integer numberOfPages) {
 		this.numberOfPages = numberOfPages;
 	}
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-	@NotNull
-    @Min(100)
-    private Integer numberOfPages;
-    // This will not allow the createdAt column to be updated after creation
-    @Column(updatable=false)
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date createdAt;
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    private Date updatedAt;
-    
-    public Book() {
-    }
-    public Book(String title, String desc, String lang, int pages) {
-        this.title = title;
-        this.description = desc;
-        this.language = lang;
-        this.numberOfPages = pages;
-    }
-    
-    // other getters and setters removed for brevity
-    @PrePersist
-    protected void onCreate(){
-        this.createdAt = new Date();
-    }
-    @PreUpdate
-    protected void onUpdate(){
-        this.updatedAt = new Date();
-    }
+	
 }
 
