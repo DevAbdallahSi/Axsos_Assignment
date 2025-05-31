@@ -1,5 +1,9 @@
 package com.example.demo.controllers;
 
+//import java.util.ArrayList;
+import java.util.List;
+
+//import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +30,8 @@ public class BookController {
 			 @RequestParam(value="title") String title,
 	    		@RequestParam(value="description") String desc,
 	    		@RequestParam(value="language") String lang,
-	    		@RequestParam(value="pages") Integer numOfPages,RedirectAttributes redirectAttributes){
+	    		@RequestParam(value="pages") Integer numOfPages,RedirectAttributes redirectAttributes)
+	 {
 		 redirectAttributes.addAttribute("title", title);
 		 redirectAttributes.addAttribute("description", desc);
 		 redirectAttributes.addAttribute("language", lang);
@@ -43,9 +48,17 @@ public class BookController {
 	 		model.addAttribute("book", book);
 			return "details";
 		}
+	 	
 	 	@GetMapping("/book")
 	 	public String show() {
 	 		return "details";
+	 	}
+	 	
+	 	@GetMapping("/books")
+	 	public String allBooks(Model model) {
+	 	    List<Book> books = page.allBooks();
+	 	    model.addAttribute("books", books);
+	 	    return "books"; 
 	 	}
 	   
 	}
