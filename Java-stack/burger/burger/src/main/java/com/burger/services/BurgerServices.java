@@ -4,6 +4,7 @@ package com.burger.services;
 import java.util.Optional;
 
 
+
 import org.springframework.stereotype.Service;
 
 import com.burger.repositories.burgerRepo;
@@ -30,7 +31,7 @@ public class BurgerServices {
         return burgerRepo.save(burger);
     }
     // retrieves a book
-    public Burger findBook(Long id) {
+    public Burger findBurger(Long id) {
         Optional<Burger> optionalBurger = burgerRepo.findById(id);
         if(optionalBurger.isPresent()) {
             return optionalBurger.get();
@@ -38,19 +39,19 @@ public class BurgerServices {
             return null;
         }
     }
-	public Burger updateBook(Long id,String burgerName, String resturantName, Integer rating, String notes) {
-		// TODO Auto-generated method stub
-		Optional<Burger> optionalBurger = burgerRepo.findById(id);
-        if(optionalBurger.isPresent()) {
-        	Burger burger = new Burger( burgerName,  resturantName,  rating,  notes);
-        	burger.setId(id);
-            return burgerRepo.save(burger);
-        }
-        {
-            return null;
-        }
-		
-	}
+//	public Burger updateBurger(Long id,String burgerName, String resturantName, Integer rating, String notes) {
+//		// TODO Auto-generated method stub
+//		Optional<Burger> optionalBurger = burgerRepo.findById(id);
+//        if(optionalBurger.isPresent()) {
+//        	Burger burger = new Burger( burgerName,  resturantName,  rating,  notes);
+//        	burger.setId(id);
+//            return burgerRepo.save(burger);
+//        }
+//        {
+//            return null;
+//        }
+//		
+//	}
 	public void deleteBurger(Long id) {
 		// TODO Auto-generated method stub
 		Optional<Burger> optionalBurger = burgerRepo.findById(id);
@@ -60,4 +61,7 @@ public class BurgerServices {
         
 		
 	}
+	 public Burger updateBurger(Burger burger) {
+	        return burgerRepo.save(burger);
+	    }
 }

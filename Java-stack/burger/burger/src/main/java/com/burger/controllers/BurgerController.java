@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -50,26 +51,45 @@ public class BurgerController {
 	     page.createBurger(burger);
 	     return "redirect:/"; 
 	 }
-//	
-//	 
+	 
+	 @GetMapping("/burgers/edit/{id}")
+	 public String desplay(@PathVariable Long id,@ModelAttribute("burger") Burger burger,Model model) {
+		 Burger burger1 =page.findBurger(id);
+		 model.addAttribute("burger", burger1);
+		 return "new";
+	 }
+
+	 @PutMapping("/burgers/edit/{id}")
+	 public String edit(
+	     @Valid @ModelAttribute("burger") Burger burger,
+	     BindingResult result,
+	     @PathVariable("id") Long id,
+	     Model model
+	 ) {
+	     if (result.hasErrors()) {
+	         return "new"; // return to edit form if validation fails
+	     }
+
+	     // Ensure the burger keeps the original ID
+	     burger.setId(id);
+
+	     // Update the burger
+	     page.updateBurger(burger);
+
+	     return "redirect:/"; 
+	 }
 //	 	@GetMapping("/books")
 //	 	public String allBooks(Model model) {
 //	 	    List<Book> books = page.allBooks();
 //	 	    model.addAttribute("books", books);
 //	 	    return "books"; 
 //	 
-//	 	@GetMapping("/book/{id}")
-//	    public String desplay(@PathVariable Long id ,Model model) {
-//	 		Book book =page.findBook(id);
-//	 		model.addAttribute("book", book);
-//			return "details";
-//		}
+//	 	 @GetMapping("/burgers/edit/{id}")
+//		 public String desplay(@PathVariable Long id,@ModelAttribute("burger") Burger burger,Model model) {
+//			 model.addAttribute("burgers",page.allBurger());
+//			 return "index";
+//		 }
 //	 	
-//	 	@GetMapping("/book/{id}/details")
-//	 	public String show(@PathVariable Long id ,Model model) {
-//	 		Book book =page.findBook(id);
-//	 		model.addAttribute("book", book);
-//			return "details";
 //	 	}
 //	 	
 //	 	}

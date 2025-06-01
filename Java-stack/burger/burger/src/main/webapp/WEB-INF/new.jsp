@@ -1,4 +1,5 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>    
 <%@ page isErrorPage="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -6,38 +7,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Add Book</title>
-<!-- Bootstrap 5 CDN -->
-<link
+<title>burger details</title>
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"rel="stylesheet">
-</head>
-<body class="bg-light">
-	<h1>Burger Tracker</h1>
-	<table class="table">
-		<thead>
-			<tr>
-				<th scope="col">Burger Name</th>
-				<th scope="col">Resturant Name</th>
-				<th scope="col">Rating (out of 5)</th>
-				<th scope="col">Action</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach var="burger" items="${burgers}">
-				<tr>
-					<td>${burger.burgerName}</td>
-					<td>${burger.resturantName}</td>
-					<td>${burger.rating}</td>
-		    		<td><a href="/burgers/edit/${burger.id}">edit</a></td>
-				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
-	<div class="container mt-5">
-		<h1 class="text-center mb-4">Add a Book</h1>
 
-		<form:form action="/burger" method="post" modelAttribute="burger"
-			class="card p-4 shadow">
+</head>
+<body>
+	<form:form action="/burgers/edit/${burger.id}" method="post" modelAttribute="burger" class="card p-4 shadow">
+	    <input type="hidden" name="_method" value="put">
+	
 			<div class="mb-3">
 				<form:label path="burgerName" class="form-label">BurgerName</form:label>
 				<form:input path="burgerName" cssClass="form-control" />
@@ -68,6 +45,5 @@
 			</div>
 		</form:form>
 	</div>
-
 </body>
 </html>
