@@ -1,6 +1,7 @@
 package com.example.demo.models;
 import java.util.Date;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,20 +23,25 @@ public class Book {
     private Long id;
     
     @NotNull
+    @NotBlank(message = "Title is required.")
     @Size(min = 5, max = 200)
     private String title;
     
     @NotNull
     @Size(min = 5, max = 200)
+    @NotBlank(message = "Description is required.")
     private String description;
     
     @NotNull
+    @NotBlank(message = "Language is required.")
     @Size(min = 5)
     @Column(columnDefinition="TEXT")
     private String language;
     
     @NotNull
-    @Min(100)
+//    @Min(100)
+    @NotNull(message = "Number of pages is required.")
+    @Min(value = 100, message = "Pages must be at least 1.")
     private Integer numberOfPages;
     
     // This will not allow the createdAt column to be updated after creation

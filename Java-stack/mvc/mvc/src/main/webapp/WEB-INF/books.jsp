@@ -17,6 +17,7 @@
       <th scope="col">Title</th>
       <th scope="col">Language</th>
       <th scope="col">Pages</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -26,7 +27,14 @@
 		    <td><a href="/book/${book.id}/details">${book.title}</a></td>
 		    <td>${book.language}</td>
 		    <td>${book.numberOfPages}</td>
+		    <td>
+		    <form action="/books/${book.id}" method="post">
+			    <input type="hidden" name="_method" value="delete">
+			    <input type="submit" value="Delete" class="btn btn-danger">
+			</form>
+			</td>
         </tr>
+        
     </c:forEach>
   </tbody>
 </table>
