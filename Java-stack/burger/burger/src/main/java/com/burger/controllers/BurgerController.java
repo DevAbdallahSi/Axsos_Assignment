@@ -59,7 +59,7 @@ public class BurgerController {
 		 return "new";
 	 }
 
-	 @PutMapping("/burgers/edit/{id}")
+	 @PutMapping("/red/edit/{id}")
 	 public String edit(
 	     @Valid @ModelAttribute("burger") Burger burger,
 	     BindingResult result,
