@@ -39,7 +39,7 @@ import jakarta.validation.Valid;
 		 
 
 		 @PostMapping("/form")
-		 public String createBurger(@Valid @ModelAttribute("Travel") Travel travel,BindingResult result){
+		 public String createExpense(@Valid @ModelAttribute("Travel") Travel travel,BindingResult result){
 		     if (result.hasErrors()) {
 		         return "index"; // return to form if validation fails
 		     }

@@ -30,11 +30,13 @@
 					<td>${travel.vendor}</td>
 					<td>${travel.amount}$</td>
 		    		<td>
-		    			<a href="/expense/edit/${travel.id}">edit</a>
-			    		<form action="/delete/${travel.id}" method="post">
-						    <input type="hidden" name="_method" value="delete">
-						    <input type="submit" value="Delete" class="btn btn-danger">
-						</form>
+					    <div class="d-flex gap-2">
+					        <a href="/expense/edit/${travel.id}" class="btn btn-primary">Edit</a>
+					        <form action="/delete/${travel.id}" method="post">
+					            <input type="hidden" name="_method" value="delete">
+					            <input type="submit" value="Delete" class="btn btn-danger">
+					        </form>
+					    </div>
 					</td>
 				</tr>
 			</c:forEach>
