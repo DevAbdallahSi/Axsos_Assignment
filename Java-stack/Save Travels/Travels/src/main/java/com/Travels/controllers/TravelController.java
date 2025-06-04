@@ -64,10 +64,10 @@ import jakarta.validation.Valid;
 		     }
 
 		     // Ensure the burger keeps the original ID
-		     travel.setId(id);
+//		     travel.setId(id);
 
 		     // Update the burger
-		     expense.updateExpense(travel);
+		     expense.createExpense(travel);
 
 		     return "redirect:/"; 
 		 }
