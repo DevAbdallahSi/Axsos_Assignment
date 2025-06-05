@@ -35,4 +35,7 @@ public void deleteStudent(Long id) {
 	}
 
 }
+public List<Student> findAllUnassigned() {
+    return studentRepositories.findByDormIsNull();
+}
 }

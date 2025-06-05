@@ -36,7 +36,11 @@ private DormServices dormServices;
 			return "newStudent";
 		}
 		studentServices.createStudent(student);
-        return "redirect:/dorm/"+student.getDorm().getId();
+		 if (student.getDorm() != null) {
+		        return "redirect:/dorm/"+student.getDorm().getId();
+		    } else {
+		        return "redirect:/dorms"; // Or some fallback page
+		    }
         }
 	@DeleteMapping("/destroy/{id}")
 	public String destroy(@PathVariable("id") Long id) {
