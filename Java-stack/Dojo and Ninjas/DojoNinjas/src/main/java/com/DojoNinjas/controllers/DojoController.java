@@ -1,6 +1,7 @@
 package com.DojoNinjas.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,8 +29,7 @@ public class DojoController {
     public String createDojo(@Valid @ModelAttribute ("dojos") Dojo dojo, BindingResult result) {
     	  if (result.hasErrors()) {
               return "dojo";
-          }
-    	  
+              }
 		dojoService.createDojo(dojo);
           return "redirect:/new/ninjas";
     }
