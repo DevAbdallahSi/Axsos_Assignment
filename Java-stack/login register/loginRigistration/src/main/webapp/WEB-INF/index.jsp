@@ -27,10 +27,10 @@
 				<form:input path="email" placeholder="Email" />
 				<form:errors path="email" cssClass="text-danger" />
 
-				<form:input path="password" type="password" placeholder="Password" />
+				<form:password path="password" placeholder="Password" />
 				<form:errors path="password" cssClass="text-danger" />
 
-				<form:input path="password" type="password" placeholder="Password" />
+				<form:password path="confirm" placeholder="Password" />
 				<form:errors path="confirm" cssClass="text-danger" />
 
 				<button type="submit">Register</button>
@@ -45,7 +45,7 @@
 				<form:input path="email" placeholder="Email" />
 				<form:errors path="email" cssClass="text-danger" />
 
-				<form:input path="password" type="password" placeholder="Password" />
+				<form:password path="password" placeholder="Password" />
 				<form:errors path="password" cssClass="text-danger" />
 
 				<button type="submit">Login</button>
