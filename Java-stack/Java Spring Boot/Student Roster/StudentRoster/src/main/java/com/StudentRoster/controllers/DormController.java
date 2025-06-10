@@ -55,8 +55,12 @@ public class DormController {
 	public String assignStudentToDorm(
 	        @PathVariable("dormId") Long dormId,
 	        @ModelAttribute("student") Student student) {
+ 
 		
 	    // Get the actual student by ID
+//		if (student==null) {
+//			return "redirect:/dorm/" + dormId;
+//		}
 	    Student existingStudent = studentServices.findStudent(student.getId());
 	    Dorm dorm = dormServices.findDorm(dormId);
 

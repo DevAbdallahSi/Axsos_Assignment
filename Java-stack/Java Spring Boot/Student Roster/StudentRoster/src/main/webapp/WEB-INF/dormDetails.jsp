@@ -16,17 +16,20 @@
 	<h1>${dorm.name}</h1>
 
 	<a href="/dorms" class="text-primary text-decoration-underline">Dashboard</a>
-	<form:form action="/dorm/${dorm.id}/assign" method="post"
-		modelAttribute="student">
-		<div class="mb-3">
-			<form:label path="id" class="form-label">Select Student</form:label>
-			<form:select path="id" class="form-select">
-				<form:options items="${students}" itemValue="id" itemLabel="name" />
-			</form:select>
-			<form:errors path="id" class="text-danger" />
-		</div>
-		<button type="submit" class="btn btn-success">Add</button>
-	</form:form>
+	<c:if test="${not empty students}">
+		<form:form action="/dorm/${dorm.id}/assign" method="post"
+			modelAttribute="student">
+			<div class="mb-3">
+				<form:label path="id" class="form-label">Select Student</form:label>
+				<form:select path="id" class="form-select">
+					<form:options items="${students}" itemValue="id" itemLabel="name" />
+				</form:select>
+				<form:errors path="id" class="text-danger" />
+			</div>
+			<button type="submit" class="btn btn-success">Add</button>
+		</form:form>
+	</c:if>
+
 
 	<table class="table table-striped mt-3">
 		<thead>
