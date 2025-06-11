@@ -2,7 +2,6 @@ package com.ProductsandCategories.models;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Locale.Category;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -18,6 +17,10 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name="products")
@@ -25,12 +28,18 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+    @NotBlank(message = "name is required")
     private String name;
     
+    @NotBlank(message = "description is required")
     private String description;
     
-    private float price;
+    @NotNull(message = "Price must not be null")
+    @DecimalMin(value = "1.0", inclusive = true, message = "Price must be at least 1.0")
+    @DecimalMax(value = "100.0", inclusive = true, message = "Price must not exceed 100.0")
+    private Float price;
+
+
     
     @Column(updatable=false)
     @DateTimeFormat(pattern="yyyy-MM-dd")
@@ -38,13 +47,14 @@ public class Product {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
     
+    
+    
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "categories_products", 
         joinColumns = @JoinColumn(name = "product_id"), 
         inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
-    private List<Category> categories;
+    )    private List<Category> categories;
     
     
     public Product() {
@@ -75,10 +85,11 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public float getPrice() {
+	
+	public Float getPrice() {
 		return price;
 	}
-	public void setPrice(float price) {
+	public void setPrice(Float price) {
 		this.price = price;
 	}
 	public List<Category> getCategories() {
