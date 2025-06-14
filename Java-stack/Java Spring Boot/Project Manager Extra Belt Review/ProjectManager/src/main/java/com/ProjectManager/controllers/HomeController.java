@@ -1,5 +1,8 @@
 package com.ProjectManager.controllers;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,7 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ProjectManager.models.LoginUser;
+import com.ProjectManager.models.Project;
 import com.ProjectManager.models.User;
+import com.ProjectManager.services.ProjectServices;
 import com.ProjectManager.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -21,6 +26,9 @@ public class HomeController {
     // Add once service is implemented:
      @Autowired
      private UserService userServ;
+     @Autowired
+     private ProjectServices projectServices;
+     
     
     @GetMapping("/")
     public String index(Model model) {
@@ -41,7 +49,7 @@ public class HomeController {
             return "index";
         }
 
-        session.setAttribute("userId", registeredUser.getId());
+        session.setAttribute("loggedInUser", registeredUser);
         return "redirect:/dashboard";
     }
     
@@ -56,7 +64,7 @@ public class HomeController {
             return "index";
         }
 
-        session.setAttribute("userId", user.getId());
+        session.setAttribute("loggedInUser", user);
         return "redirect:/dashboard";
     }
     
@@ -64,14 +72,23 @@ public class HomeController {
     
     @GetMapping("/dashboard")
     public String home(HttpSession session, Model model) {
-        if (session.getAttribute("userId") == null) {
-            return "redirect:/";
-        }
+    	
+    	    User user = (User)session.getAttribute("loggedInUser");
+    	    if (user == null) {
+    	        session.invalidate(); // Clear the session if the user doesn't exist
+    	        return "redirect:/";
+    	    }
 
-        // Optional: Fetch user from DB and pass to JSP
-        Long userId = (Long) session.getAttribute("userId");
-        User user = userServ.findUserById(userId);
+        List<Project> myProjects = projectServices.findUserProjects(user);
+//        List<Project> allProjects = projectServices.allProject();
+
+//        List<Project> notJoined = allProjects.stream()
+//            .filter(p -> !myProjects.contains(p))
+//            .collect(Collectors.toList());
+
         model.addAttribute("user", user);
+        model.addAttribute("list", myProjects);
+        model.addAttribute("notContain", projectServices.findByMembersNotContains(user));
 
         return "dashboard";
     }
@@ -80,7 +97,7 @@ public class HomeController {
     
     
     
-    @GetMapping("/logout")
+    @PostMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate(); // Destroys the entire session
         return "redirect:/";  // Redirect to login/registration page

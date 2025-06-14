@@ -6,12 +6,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>New project</title>
+    <title>Edit project</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="container mt-5">
-    <h1 class="mb-4">create project</h1>
-    <form:form action="/project/form" method="post" modelAttribute="project" class="w-50">
+    <h1 class="mb-4">Edit Project</h1>
+    <form:form action="/updateProject/form/${project.id}" method="post" modelAttribute="project" class="w-50">
+        <form:hidden path="id" />
+    <input type="hidden" name="_method" value="put" />
         <div class="mb-3">
             <form:label path="title" class="form-label">title</form:label>
             <form:input path="title" class="form-control" />
@@ -26,10 +28,10 @@
 
         <div class="mb-3">
             <form:label path="dueDate" class="form-label">Due Date (MM/dd/yyyy): </form:label>
-            <form:input path="dueDate" class="form-control" type="date" placeholder="MM/dd/yyyy"/>
+            <form:input path="dueDate" class="form-control" type="date"/>
             <form:errors path="dueDate" class="text-danger" />
         </div>
-        <button type="submit" class="btn btn-success">Create</button>
+        <button type="submit" class="btn btn-success">Update</button>
     </form:form>
 </body>
 </html>

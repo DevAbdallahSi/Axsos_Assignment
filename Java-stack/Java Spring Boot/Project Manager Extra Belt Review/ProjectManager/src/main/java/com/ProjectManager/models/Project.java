@@ -2,6 +2,7 @@ package com.ProjectManager.models;
 
 
 import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -43,13 +45,18 @@ public class Project {
 
     @NotBlank(message = "Description: is required")
     @Size(min = 2, max = 200, message = "Description: must be between 2 and 100 characters")
-    private String Description;
+    private String description;
 
 
-    @DateTimeFormat(pattern = "MM/dd/yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull(message = "Due date must be provided.")
     @FutureOrPresent(message = "Due date must not be in the past.")
     private LocalDate dueDate;
+    
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private User owner;
+    
     
     @ManyToMany
     @JoinTable(
@@ -57,27 +64,24 @@ public class Project {
         joinColumns = @JoinColumn(name = "project_id"), // FK to this entity
         inverseJoinColumns = @JoinColumn(name = "user_id") // FK to the other entity
     )
-    private List<User> users;
+    private List<User> members= new ArrayList<>();
 
-
-
- 
-
-
-
-
-   
-	public List<User> getUsers() {
-		return users;
+    
+	public User getOwner() {
+		return owner;
 	}
 
-
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setOwner(User owner) {
+		this.owner = owner;
 	}
 
+	public List<User> getMembers() {
+		return members;
+	}
 
-	
+	public void setMembers(List<User> members) {
+		this.members = members;
+	}
 
 	@Column(updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
@@ -89,20 +93,20 @@ public class Project {
     // Constructors
     public Project() {}
 
-    public Project(String title, String Description, LocalDate dueDate) {
+    public Project(String title, String description, LocalDate dueDate) {
         this.title = title;
-        this.Description = Description;
+        this.description = description;
         this.dueDate = dueDate;
     }
 
     
     public String getDescription() {
-		return Description;
-	}
+        return description;
+    }
 
-	public void setDescription(String description) {
-		Description = description;
-	}
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
 	public LocalDate getDueDate() {
 		return dueDate;
