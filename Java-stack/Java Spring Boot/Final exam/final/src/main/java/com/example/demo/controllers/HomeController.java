@@ -1,7 +1,7 @@
-package com.ProjectManager.controllers;
+package com.example.demo.controllers;
+
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.ProjectManager.models.LoginUser;
-import com.ProjectManager.models.Project;
-import com.ProjectManager.models.User;
-import com.ProjectManager.services.ProjectServices;
-import com.ProjectManager.services.UserService;
+import com.example.demo.models.LoginUser;
+import com.example.demo.models.Talk;
+import com.example.demo.models.User;
+import com.example.demo.services.TalkServices;
+import com.example.demo.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -27,7 +27,7 @@ public class HomeController {
      @Autowired
      private UserService userServ;
      @Autowired
-     private ProjectServices projectServices;
+     private TalkServices talkServices;
      
     
     @GetMapping("/")
@@ -79,10 +79,17 @@ public class HomeController {
     	        return "redirect:/";
     	    }
 
-        List<Project> myProjects = projectServices.findUserProjects(user);
+        List<Talk> myTalks = talkServices.findUserTalks(user);
+//        List<Project> allProjects = projectServices.allProject();
+
+//        List<Project> notJoined = allProjects.stream()
+//            .filter(p -> !myProjects.contains(p))
+//            .collect(Collectors.toList());
+
         model.addAttribute("user", user);
-        model.addAttribute("list", myProjects);
-        model.addAttribute("notContain", projectServices.findByMembersNotContains(user));
+        model.addAttribute("list", myTalks);
+        model.addAttribute("allTalk", talkServices.allTalk());
+        model.addAttribute("notContain", talkServices.findByMembersNotContains(user));
 
         return "dashboard";
     }
