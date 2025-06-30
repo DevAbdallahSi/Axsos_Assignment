@@ -1,5 +1,5 @@
 class Ninja {
-    constructor(name,health,speed=2,strength=3){
+    constructor(name,health=50,speed=2,strength=3){
         this.name=name;
         this.health=health;
         this.speed=speed;
@@ -19,10 +19,23 @@ class Ninja {
         
     }
 }
-    const dojo =new Ninja("ahmad",80,8);
+    const dojo =new Ninja("ahmad");
     // dojo.sayName()
     // dojo.showStatus()
-    dojo.drinkSake()
-    console.log(dojo);
+    // dojo.drinkSake()
+    // console.log(dojo);
     
+
+class Sensei extends Ninja{
+    constructor(wisdom){
+        super("abood",200,10,10)
+        this.wisdom=10;
+    }
+    speakWisdowm(){
+        super.drinkSake();
+    }
+}
+const shadow = new Sensei(10)
+shadow.speakWisdowm()
+console.log(shadow);
 
