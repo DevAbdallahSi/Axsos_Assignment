@@ -16,11 +16,11 @@
 
 // *********************************************// *********************************************
 
-
+ 
 // console.log(hello);
 // var hello = "world";
 
-// var hello:Hoisted         var hello;            // declaration hoisted
+// var hello   :Hoisted         var hello;            // declaration hoisted
 // console.log(hello);       console.log(hello);   //  it's undefined at this point
 // outbut is undefined       hello = "world";      // assignment happens here
 
@@ -102,7 +102,7 @@
 // console.log(food);     // Never runs
 
 // *********************************************// *********************************************
-
+// var genre
 // console.log(genre);
 // var genre = "disco";
 // rewind();
@@ -132,7 +132,9 @@
 // dojo ="san jose"; //❗assigns to global (even without var, let, or const) 
 // console.log(dojo); // print san jose
 // learn();  //call the function 
+
 // function learn(){  // declare the function
+
 //     dojo="seattle";  //>> local vareable
 //     console.log(dojo);
 //     var dojo ="burbank";
@@ -148,7 +150,7 @@
 // *********************************************// *********************************************
 
 // console.log(makeDojo("chicago",65));
-// // console.log(makeDojo("tann",0));
+// console.log(makeDojo("tann",0));
 // function makeDojo(name,student){
 //     const dojo={};//***********************You can change its properties
 //                                    //     But you cannot reassign the whole variable to a new value (like a string)
