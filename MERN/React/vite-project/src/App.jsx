@@ -8,14 +8,14 @@ function App() {
 
   return (
     <>
-      <h1>hello dojo</h1>
+      {/* <h1>hello dojo</h1>
       <h3>thinhs i need to do</h3>
       <ul>
       <li>learn React</li>
       <li> climb Mt everest</li>
       <li>Run A Marathon </li>
       <li> Feed The dogs</li>
-      </ul>
+      </ul> */}
       <div>
       <PersonCard firstName="jary" lastName="basheer" age={25} hairColor="red" />
         <PersonCard firstName="abood" lastName="salhi" age={25} hairColor="black" />
