@@ -83,7 +83,7 @@ public class ProjectController {
 			model.addAttribute("project", project);
 			return "editProject";
 		}
-		System.out.println("Received project ID: " + id); // or userId
+//		System.out.println("Received project ID: " + id); // or userId
 
 		projectServices.updateProject(project,user);
 		return "redirect:/dashboard";
@@ -124,6 +124,7 @@ public class ProjectController {
 
 
 	}
+	
 	@PostMapping("/projects/{id}/leave")
 	public String leaveProject(@PathVariable("id") Long projectId, HttpSession session) {
 	    User sessionUser = (User) session.getAttribute("loggedInUser");

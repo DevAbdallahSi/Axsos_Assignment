@@ -70,7 +70,7 @@ public class ProjectServices {
 		Project project = findProjectById(projectId);
 
 		if (!(project.getOwner().getId() == dbUser.getId())) {
-			boolean removed = project.getMembers().remove(dbUser);
+			project.getMembers().remove(dbUser);
 //			System.out.println("Removed from members list? " + removed); // DEBUG
 			projectRepo.save(project);
 		}
@@ -80,6 +80,7 @@ public class ProjectServices {
 		return projectRepo.findByMembersNotContains(user);
 	}
 
+	
 
 
 	public List<Project> findUserProjects(User user) {

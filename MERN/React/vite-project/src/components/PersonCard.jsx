@@ -15,3 +15,4 @@ const PersonCard = (props) =>{
 }
 export default PersonCard;
 
+console.log();

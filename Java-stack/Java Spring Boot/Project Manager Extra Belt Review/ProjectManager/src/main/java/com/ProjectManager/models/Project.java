@@ -33,8 +33,6 @@ import jakarta.validation.constraints.Size;
 @Table(name = "projects")
 public class Project {
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
