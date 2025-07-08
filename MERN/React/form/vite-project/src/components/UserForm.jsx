@@ -92,7 +92,7 @@ const UserForm = () => {
           <input
             type="submit"
             value="Create User"
-            disabled={emailError.length >= 0}
+            disabled={emailError.length > 0}
           />
         </div>
       </form>
