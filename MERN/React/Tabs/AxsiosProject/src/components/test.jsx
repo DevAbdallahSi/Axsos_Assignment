@@ -2,14 +2,18 @@ import React, { useState } from "react";
 
 const MyComponent = (props) => {
   const [msg, setMsg] = useState(null); 
-
+  const {movies}= props
   const onClickHandler = (e, movie) => {
     setMsg(movie);
+    console.log(movie);
+    
   };
 
+
+  
   return (
     <div>
-      {props.movies.map((movie, index) => (
+      {movies.map((movie, index) => (
         <button style={{margin:"10px"}} key={index} onClick={(e) => onClickHandler(e, movie)}>{movie.title}</button>
       ))}
       {msg && (
