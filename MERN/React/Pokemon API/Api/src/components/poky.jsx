@@ -23,7 +23,6 @@ function PokeList() {
     <div>
       <h2>Pokédex</h2>
       <button onClick={fetchPokemon}>Load Pokémon</button>
-
       {loading && <p>Loading...</p>}
 
       <ul>

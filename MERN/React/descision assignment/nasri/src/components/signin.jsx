@@ -15,6 +15,8 @@ const FormComponents = (props) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log(e.target);
+    
     setFormData({ ...formData, [name]: value });
     validateField(name, value);
   };
