@@ -4,13 +4,12 @@ function PokeList() {
   const [pokemonList, setPokemonList] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // Function that fetches Pokémon
   const fetchPokemon = () => {
     setLoading(true);
     fetch('https://pokeapi.co/api/v2/pokemon')
       .then(res => res.json())
       .then(data => {
-        setPokemonList(data.results);  // Update state with Pokémon names
+        setPokemonList(data.results);  
         setLoading(false);
       })
       .catch(error => {
