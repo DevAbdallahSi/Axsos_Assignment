@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const MyComponent = (props) => {
   const [msg, setMsg] = useState(null); 
   const {movies}= props
-  const onClickHandler = (e, movie) => {
+  const onClickHandler = (movie) => {
     setMsg(movie);
     console.log(movie);
     
@@ -14,7 +14,7 @@ const MyComponent = (props) => {
   return (
     <div>
       {movies.map((movie, index) => (
-        <button style={{margin:"10px"}} key={index} onClick={(e) => onClickHandler(e, movie)}>{movie.title}</button>
+        <button style={{margin:"10px"}} key={index} onClick={() => onClickHandler(movie)}>{movie.title}</button>
       ))}
       {msg && (
         <div style={{ marginTop: "20px", padding: "10px", border: "1px solid #ccc" }}>

@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import MyLis from './components/MyList';
+import TodoApp from './components/MyList';
+
 function App() {
-  
 
   return (
     <>
         <div>
-          <MyLis/>
+          <TodoApp/>
         </div>
     </>
     
