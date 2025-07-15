@@ -8,7 +8,6 @@ import axios from 'axios';
 function App() {
     const [data ,setData]=useState({})
         
-
     const api = (id,type) => {
         axios.get(`http://swapi.py4e.com/api/${type}/${id}`)
         .then((res)=> {

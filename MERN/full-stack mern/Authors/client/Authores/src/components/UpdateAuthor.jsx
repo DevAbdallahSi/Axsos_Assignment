@@ -1,25 +1,22 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import ProductForm from "./ProductForm";
+import AuthorForm from "./AutherForm";
 
-const UpdateProduct = () => {
+const UpdateAuthor = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [initialData, setInitialData] = useState(null);
-
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/product/${id}`)
+        axios.get(`http://localhost:8000/api/authore/${id}`)
             .then(res => setInitialData(res.data))
             .catch(err => console.error("Fetch error:", err));
     }, [id]);
-
-    
-    const handleUpdate = (formData, setErrors) => {
-        axios.patch(`http://localhost:8000/api/product/${id}`, formData)
+    const handelUpdate = (formData, setErrors) => {
+        axios.patch(`http://localhost:8000/api/authore/${id}`, formData)
             .then((res) => {
                 console.log("✅ Product updated:", res.data);
-                navigate(`/product/${id}`); // go to product details page
+                navigate(`/`)
             })
             .catch((err) => {
                 if (err.response?.data?.errors) {
@@ -32,21 +29,14 @@ const UpdateProduct = () => {
                     console.error("❌ Update error:", err);
                 }
             });
-    };
-
+    }
     return (
         <>
-            <h2>Edit Product</h2>
+            <h2>Edit this Authore</h2>
             {initialData ? (
-                <ProductForm
-                    initialData={initialData}
-                    onSubmitProps={handleUpdate}
-                />
-            ) : (
-                <p>Loading...</p>
-            )}
+                <AuthorForm initialData={initialData} onSubmitProps={handelUpdate}/>
+            ):(<p>Loading...</p>)}
         </>
-    );
-};
-
-export default UpdateProduct;
+    )
+}
+export default UpdateAuthor;

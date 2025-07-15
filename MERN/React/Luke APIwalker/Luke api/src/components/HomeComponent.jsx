@@ -13,7 +13,6 @@ const handelChange =(e) =>{
     e.preventDefault();
 
     props.luke(formData.id,formData.type)
-    
     }
 
     return(
