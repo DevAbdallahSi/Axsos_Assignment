@@ -5,12 +5,13 @@ const MyComponent = (props) => {
   const {movies}= props
   const onClickHandler = (movie) => {
     setMsg(movie);
+
     console.log(movie);
     
   };
 
 
-  
+
   return (
     <div>
       {movies.map((movie, index) => (

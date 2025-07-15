@@ -47,56 +47,56 @@ const Update = () => {
             });
     };
     return (
-    <div className="container-fluid bg-light">
-      <div className="row justify-content-center">
-        <div className="col-lg-8 col-md-8 col-sm-10">
-          <form className="form-container" onSubmit={handleSubmit}>
-            <h4 className="text-center font-weight-bold">Update Product</h4>
+        <div className="container-fluid bg-light">
+            <div className="row justify-content-center">
+                <div className="col-lg-8 col-md-8 col-sm-10">
+                    <form className="form-container" onSubmit={handleSubmit}>
+                        <h4 className="text-center font-weight-bold">Update Product</h4>
 
-            <div className="form-floating mb-3">
-              <input
-                type="text"
-                className="form-control"
-                name="title"
-                value={formData.title}
-                onChange={handleChange}
-                placeholder="Title"
-              />
-              <label>Title</label>
-            </div>
+                        <div className="form-floating mb-3">
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="title"
+                                value={formData.title}
+                                onChange={handleChange}
+                                placeholder="Title"
+                            />
+                            <label>Title</label>
+                        </div>
 
-            <div className="form-floating mb-3">
-              <input
-                type="number"
-                className="form-control"
-                name="price"
-                value={formData.price}
-                onChange={handleChange}
-                placeholder="Price"
-              />
-              <label>Price</label>
-            </div>
+                        <div className="form-floating mb-3">
+                            <input
+                                type="number"
+                                className="form-control"
+                                name="price"
+                                value={formData.price}
+                                onChange={handleChange}
+                                placeholder="Price"
+                            />
+                            <label>Price</label>
+                        </div>
 
-            <div className="form-floating mb-3">
-              <input
-                type="text"
-                className="form-control"
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                placeholder="Description"
-              />
-              <label>Description</label>
-            </div>
+                        <div className="form-floating mb-3">
+                            <input
+                                type="text"
+                                className="form-control"
+                                name="description"
+                                value={formData.description}
+                                onChange={handleChange}
+                                placeholder="Description"
+                            />
+                            <label>Description</label>
+                        </div>
 
-            <div className="form-group">
-              <button className="btn btn-warning btn-block">Update</button>
+                        <div className="form-group">
+                            <button className="btn btn-warning btn-block">Update</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </form>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 

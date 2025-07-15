@@ -23,8 +23,7 @@ const CreateProduct = () => {
 
     return(
         <>
-        <ProductForm
-      initialData={{ title: "", price: "", description: "" }} onSubmitProps={handelCreate}/>
+        <ProductForm initialData={{ title: "", price: "", description: "" }} onSubmitProps={handelCreate}/>
         </>
     )
 }
