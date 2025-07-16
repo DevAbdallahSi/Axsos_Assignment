@@ -36,6 +36,7 @@ const AuthorForm = ({ initialData = { name: "" }, onSubmitProps }) => {
         onSubmitProps(formData, setErrors, setFormData);
     };
 
+
     return (
         <form onSubmit={handelSubmit}>
             <label>

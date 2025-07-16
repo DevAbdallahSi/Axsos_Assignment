@@ -1,13 +1,13 @@
 import axios from "axios";
-import AuthorForm from "./AutherForm";
 import { Link } from "react-router-dom";
+import PlayerForm from "./PlayerForm";
 
-const CreateAuthor = () => {
+const CreatePlayer = () => {
     const handelCreate = (formData, setErrors, resetForm) => {
-        axios.post("http://localhost:8000/api/authore", formData)
+        axios.post("http://localhost:8000/api/player", formData)
             .then((res) => {
-                console.log("✅ Product created:", res.data);
-                resetForm({ name: "" })
+                console.log("✅ player created:", res.data);
+                resetForm({playername:"", preferredposition:""})
             })
             .catch((err) => {
                 if (err.response?.data?.errors) {
@@ -21,15 +21,15 @@ const CreateAuthor = () => {
                 }
             });
     }
-    
+
     return (
         <>
             <Link to={`/`} className="btn btn-warning btn-sm me-2">Home</Link>
-            <AuthorForm
-                initialData={{ name: "" }}
+            <PlayerForm
+                initialData={{playername:"",preferredposition:""}}
                 onSubmitProps={handelCreate}
             />
         </>
     )
 }
-export default CreateAuthor;
+export default CreatePlayer;

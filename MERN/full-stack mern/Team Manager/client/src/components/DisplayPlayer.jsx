@@ -3,26 +3,26 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import DeleteButton from "./DeleteButton";
 
-const DisplayAuthor = () => {
-    const [authors, setAuthors] = useState([]);
+const DisplayPlayer = () => {
+    const [player, setPlayer] = useState([]);
     const [message, setMessage] = useState(""); // Success message state
     const navigate = useNavigate();
 
     // Fetch authors once on mount
     useEffect(() => {
-        fetchAuthors();
+        fetchPlayer();
     }, []);
 
     
-    const fetchAuthors = () => {
+    const fetchPlayer = () => {
         axios
-            .get("http://localhost:8000/api/authores")
-            .then((res) => setAuthors(res.data))
-            .catch((err) => console.error("Error fetching authors", err));
+            .get("http://localhost:8000/api/players")
+            .then((res) => setPlayer(res.data))
+            .catch((err) => console.error("Error fetching player", err));
     };
 
-    const removeAuthorFromList = (deletedId) => {
-        setAuthors((prevAuthors) => prevAuthors.filter((a) => a._id !== deletedId));
+    const removePlayerFromList = (deletedId) => {
+        setAuthors((prevPlayer) => prevPlayer.filter((a) => a._id !== deletedId));
     };
 
     // Show success message for 2 seconds
@@ -33,7 +33,7 @@ const DisplayAuthor = () => {
 
     return (
         <div className="container mt-4">
-            <h2>Author List</h2>
+            <h2>Player List</h2>
 
             {message && (
                 <div className="alert alert-success" role="alert">
@@ -41,40 +41,42 @@ const DisplayAuthor = () => {
                 </div>
             )}
 
-            <Link to="/create/author" className="btn btn-warning btn-sm me-2">
-                Add Author
+            <Link to="/create/player" className="btn btn-warning btn-sm me-2">
+                Add Player
             </Link>
 
             <table className="table table-striped table-bordered mt-3">
                 <thead className="table-dark">
                     <tr>
-                        <th>Author</th>
+                        <th>Player:</th>
+                        <th>Preferred Position:</th>
                         <th className="text-center">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {authors.length === 0 ? (
+                    {player.length === 0 ? (
                         <tr>
                             <td colSpan="2" className="text-center">
-                                No authors found.
+                                No player found.
                             </td>
                         </tr>
                     ) : (
-                        authors.map((author) => (
-                            <tr key={author._id}>
-                                <td>{author.name}</td>
+                        player.map((player) => (
+                            <tr key={player._id}>
+                                <td>{player.playername}</td>
+                                <td>{player.preferredposition}</td>
                                 <td className="text-center">
                                     <Link
-                                        to={`/edit/${author._id}`}
+                                        to={`/edit/${player._id}`} 
                                         className="btn btn-warning btn-sm me-2"
                                     >
                                         Edit
                                     </Link>
                                     <DeleteButton
-                                        authorId={author._id}
+                                        playerId={player._id}
                                         onSuccess={() => {
-                                            removeAuthorFromList(author._id);
-                                            showMessage("Author deleted successfully!");
+                                            removePlayerFromList(player._id);
+                                            showMessage("player deleted successfully!");
                                             // Optionally: navigate("/");
                                         }}
                                     />
@@ -88,4 +90,4 @@ const DisplayAuthor = () => {
     );
 };
 
-export default DisplayAuthor;
+export default DisplayPlayer;
