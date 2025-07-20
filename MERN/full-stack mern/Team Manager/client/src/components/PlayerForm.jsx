@@ -51,13 +51,13 @@ const PlayerForm = ({ initialData, onSubmitProps }) => {
             <h3 className="text-center mb-4">{initialData && initialData._id ? "Edit Player" : "Create Player"}</h3>
 
             <div className="mb-3">
-                <label className="form-label">playername</label>
+                <label className="form-label">Player Name</label>
                 <input type="text" name="playername" value={formData.playername} onChange={handleChange} className="form-control" />
                 {errors.playername && <div className="text-danger">{errors.playername}</div>}
             </div>
 
             <div className="mb-3">
-                <label className="form-label">preferredposition</label>
+                <label className="form-label">Preferred Bosition</label>
                 <input type="text" name="preferredposition" value={formData.preferredposition} onChange={handleChange} className="form-control" />
                 {errors.preferredposition && <div className="text-danger">{errors.preferredposition}</div>}
             </div>

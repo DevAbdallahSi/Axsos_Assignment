@@ -1,13 +1,16 @@
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import PlayerForm from "./PlayerForm";
 
 const CreatePlayer = () => {
+        const navigate = useNavigate();
+    
     const handelCreate = (formData, setErrors, resetForm) => {
         axios.post("http://localhost:8000/api/player", formData)
             .then((res) => {
                 console.log("✅ player created:", res.data);
                 resetForm({playername:"", preferredposition:""})
+                navigate ("/")
             })
             .catch((err) => {
                 if (err.response?.data?.errors) {

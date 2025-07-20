@@ -1,17 +1,13 @@
 import axios from "axios";
 
-const DeleteButton = ({ authorId, onSuccess }) => {
+const DeleteButton = ({ playerId, onDeleteSuccess }) => {
     const handleDelete = () => {
         if (!window.confirm("Are you sure you want to delete this player?")) return;
 
         axios
-            .delete(`http://localhost:8000/api/player/${authorId}`)
-            .then(() => {
-                if (onSuccess) onSuccess();
-            })
-            .catch((err) => {
-                console.error("❌ Delete error:", err);
-            });
+            .delete(`http://localhost:8000/api/player/${playerId}`)
+            .then(() => onDeleteSuccess(playerId))
+            .catch(err => console.error("❌ Delete error:", err));
     };
 
     return (

@@ -13,7 +13,7 @@ const DisplayPlayer = () => {
         fetchPlayer();
     }, []);
 
-    
+
     const fetchPlayer = () => {
         axios
             .get("http://localhost:8000/api/players")
@@ -21,14 +21,15 @@ const DisplayPlayer = () => {
             .catch((err) => console.error("Error fetching player", err));
     };
 
-    const removePlayerFromList = (deletedId) => {
-        setAuthors((prevPlayer) => prevPlayer.filter((a) => a._id !== deletedId));
+    const removePlayerFromList = (id) => {
+        setPlayer(player.filter(player => player._id !== id));
     };
+
 
     // Show success message for 2 seconds
     const showMessage = (msg) => {
         setMessage(msg);
-        setTimeout(() => setMessage(""), 2000);
+        setTimeout(() => setMessage(""), 1000);
     };
 
     return (
@@ -67,17 +68,16 @@ const DisplayPlayer = () => {
                                 <td>{player.preferredposition}</td>
                                 <td className="text-center">
                                     <Link
-                                        to={`/edit/${player._id}`} 
+                                        to={`/edit/${player._id}`}
                                         className="btn btn-warning btn-sm me-2"
                                     >
                                         Edit
                                     </Link>
                                     <DeleteButton
                                         playerId={player._id}
-                                        onSuccess={() => {
+                                        onDeleteSuccess={() => {
                                             removePlayerFromList(player._id);
                                             showMessage("player deleted successfully!");
-                                            // Optionally: navigate("/");
                                         }}
                                     />
                                 </td>
