@@ -1,0 +1,70 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Main container styling */
+.card {
+    background: linear-gradient(135deg, #1e1e2f, #3a3a5f);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    margin: 3rem auto;
+    color: #f0f0f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+/* Input styling */
+.input-style {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #2e2e4d;
+    color: #f0f0f0;
+    font-size: 1rem;
+    transition: box-shadow 0.3s;
+}
+
+.input-style:focus {
+    outline: none;
+    box-shadow: 0 0 8px #646cff;
+}
+
+/* Error text styling */
+.error-style {
+    color: #ff6b6b;
+    font-size: 0.9rem;
+    margin: -0.5rem 0 1rem 0;
+}
+
+/* Button styling */
+.submit-button {
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(45deg, #646cff, #7f7fff);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.submit-button:hover {
+    background: linear-gradient(45deg, #7f7fff, #646cff);
+    transform: scale(1.05);
+}
+.label{
+    color: white;
+
+}
