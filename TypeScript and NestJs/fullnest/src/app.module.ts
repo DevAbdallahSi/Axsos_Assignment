@@ -5,9 +5,18 @@ import { AppService } from './app.service';
 import { BookModule } from './book/book.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './auth/auth.module';
+import { ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
     imports: [
+        ThrottlerModule.forRoot({
+            throttlers: [
+                {
+                    ttl: 60000, // how long in ms
+                    limit: 10,  // max requests within that time
+                },
+            ],
+        }),
         ConfigModule.forRoot({
             envFilePath: '.env',
             isGlobal: true,
