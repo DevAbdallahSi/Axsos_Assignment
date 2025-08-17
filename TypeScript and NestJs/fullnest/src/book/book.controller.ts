@@ -7,23 +7,33 @@ import {
     Put,
     Delete,
     Query,
+    Req,
 } from '@nestjs/common';
 import { BookService } from './book.service';
 import { Book } from './schemas/book.schema';
 import { CreateBookDto } from './dto/create-book.dto';
 import { updateBookDto } from './dto/update-book.dts';
 import type { Query as ExpressQuery } from 'express-serve-static-core';
+import { AuthGuard } from '@nestjs/passport';
+import { UseGuards } from '@nestjs/common';
+import { Roles } from 'src/auth/decorators/roles.decorator';
+import { RolesGuard } from 'src/auth/guards/roles.guards';
+import { Role } from 'src/auth/enums/role.enum';
 
 @Controller('books')
 export class BookController {
     constructor(private bookService: BookService) {}
+
     @Get()
+    @Roles(Role.Moderator, Role.Admin)
+    @UseGuards(AuthGuard(), RolesGuard)
     async getAllBooks(@Query() query: ExpressQuery): Promise<Book[]> {
         return this.bookService.findAll(query);
     }
     @Post('new')
-    async createBook(@Body() book: CreateBookDto): Promise<Book> {
-        return this.bookService.create(book);
+    @UseGuards(AuthGuard())
+    async createBook(@Body() book: CreateBookDto, @Req() req): Promise<Book> {
+        return this.bookService.create(book, req.user);
     }
 
     @Get(':id')
