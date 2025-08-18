@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { Post, Body, Get } from '@nestjs/common';
+import { Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignupDto } from './dto/signup.dto';
 import { LoginDto } from './dto/login.dto';
@@ -13,7 +13,7 @@ export class AuthController {
         return this.authService.signUp(signUpDto);
     }
 
-    @Get('/login')
+    @Post('/login')
     async login(@Body() loginDto: LoginDto): Promise<{ token: string }> {
         return this.authService.login(loginDto);
     }

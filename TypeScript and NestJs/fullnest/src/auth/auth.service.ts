@@ -16,9 +16,12 @@ export class AuthService {
     ) {}
 
     async signUp(signUpDto: SignupDto): Promise<{ token: string }> {
+        const exists = await this.userModel.exists({ email: signUpDto.email });
+        if (exists) {
+            throw new UnauthorizedException('Email already in use');
+        }
         const { name, email, password, role } = signUpDto;
         const hashedPassword = await bcrypt.hash(password, 10);
-
         const newUser = await this.userModel.create({
             name,
             email,
