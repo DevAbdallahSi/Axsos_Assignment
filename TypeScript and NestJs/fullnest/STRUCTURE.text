@@ -1,0 +1,49 @@
+src/auth/
+
+Handles authentication + authorization:
+
+decorators/roles.decorator.ts → custom decorator to attach roles metadata to routes.
+
+dto/login.dto.ts, dto/signup.dto.ts → DTOs for validation when logging in or signing up.
+
+enums/role.enum.ts → defines user roles (e.g., User, Admin).
+
+guards/roles.guard.ts → checks if the current user has the required role(s).
+
+schemas/user.schema.ts → User schema/model (likely with username, email, password, role).
+
+auth.controller.ts → Endpoints for login/register.
+
+auth.module.ts → Wires everything together.
+
+auth.service.ts → Logic for validating users, issuing JWTs, hashing passwords.
+
+jwt.strategy.ts → Passport JWT strategy to validate tokens.
+
+✅ This part gives you login, signup, role-based access, and JWT-protected routes.
+
+src/book/
+
+Handles book CRUD:
+
+dto/create-book.dto.ts → Validation rules for creating a book.
+
+dto/update-book.dto.ts → Validation rules for updating a book.
+
+schemas/ → (probably a Mongoose schema or entity for books).
+
+book.controller.ts → Endpoints for CRUD (/books).
+
+book.module.ts → Module wrapper.
+
+book.service.ts → Business logic (create, find, update, delete).
+
+✅ This gives you Book CRUD APIs, probably protected so only authenticated users (or admins) can manage books.
+
+src/app.module.ts, src/main.ts, src/app.controller.ts, src/app.service.ts
+
+main.ts → App entry, enables validation pipes, sets up global config.
+
+app.module.ts → Root module, imports AuthModule, BookModule, etc.
+
+app.controller.ts/service.ts → Usually placeholder demo endpoints, not critical.
