@@ -54,7 +54,11 @@ export class BooksService {
             throw new ForbiddenException('You do not own this book');
         }
 
-        Object.assign(book, dto);
+        // Only update safe fields, never overwrite user
+        if (dto.title !== undefined) book.title = dto.title;
+        if (dto.author !== undefined) book.author = dto.author;
+        if (dto.description !== undefined) book.description = dto.description;
+
         await book.save();
         return book.toObject();
     }

@@ -1,0 +1,243 @@
+How a protected request flows (example: POST /books)
+
+HTTP request hits your app (Express under the hood).
+
+Global middlewares run
+
+helmet() adds security headers
+
+CORS checks your frontend origin
+
+ValidationPipe (global) will validate body/params against your DTOs
+
+Routing matches BooksController@create (POST /books).
+
+Guards run before the handler
+
+AuthGuard('jwt') extracts Authorization: Bearer <token>
+
+JwtStrategy.validate() decodes token, fetches the user, sets req.user
+
+(If present) RolesGuard checks @Roles(...) vs req.user.roles
+
+DTO validation happens (from your route parameter decorators):
+
+CreateBookDto ensures fields are correct types, required, and rejects a user field (security).
+
+Controller method runs and calls the service:
+
+this.booksService.create(dto, req.user.id)
+
+Service handles business logic:
+
+builds a document {...dto, user: ObjectId(userId)}
+
+saves with Mongoose model
+
+returns a plain object (for JSON)
+
+Response is serialized to JSON → sent to client.
+
+If anything fails on the way (invalid token, missing fields, wrong role, invalid id), the corresponding guard/pipe throws an HTTP exception (401/403/400/404), and Nest turns it into a JSON error response.
+
+File-by-file guide (what each one really does)
+1) src/main.ts — Application bootstrap
+
+Creates the Nest app from AppModule.
+
+Applies global things:
+
+helmet() for security headers
+
+enableCors({ origin: 'http://localhost:5173', ...}) so your React can call your API
+
+useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
+
+whitelist: strips unknown properties from bodies
+
+forbidNonWhitelisted: throws if unknown properties are present (great for security)
+
+Starts listening on PORT.
+
+Remember: This is where cross-cutting concerns live.
+
+2) src/app.module.ts — Root wiring
+
+Loads .env (via ConfigModule.forRoot({ isGlobal: true }))
+
+Adds rate limiting (ThrottlerModule): 10 req / 60s per IP (global default)
+
+Connects to MongoDB (MongooseModule.forRootAsync(...))
+
+Imports feature modules:
+
+AuthModule (auth logic, JWT)
+
+UsersModule (user schema + related utilities)
+
+BooksModule (book CRUD)
+
+Remember: AppModule is composition only; little to no business logic here.
+
+3) src/users/schemas/user.schema.ts — User model
+
+Mongoose schema for a user:
+
+name, email (unique), password (hashed), roles (array of strings)
+
+export type UserDocument = HydratedDocument<User> gives you correct typings for Mongoose docs.
+
+Default roles: [Role.User] (from your enum).
+
+Common pitfalls:
+
+Always hash password in AuthService (never store raw).
+
+Never return password in responses.
+
+4) src/auth/auth.module.ts — Auth wiring
+
+Brings together:
+
+UsersModule (so you can inject the User model)
+
+PassportModule.register({ defaultStrategy: 'jwt' }) (enables AuthGuard('jwt'))
+
+JwtModule.registerAsync(...) (sign/verify tokens using .env)
+
+Providers: AuthService (signup/login) and JwtStrategy (decode/validate tokens)
+
+Controller: AuthController (HTTP routes for signup/login)
+
+Remember: This module “owns” authentication; other modules just use it via guards.
+
+5) src/auth/dto/*.dto.ts — DTOs for validation
+
+SignupDto: validates name, email, password (length, format)
+
+LoginDto: validates email, password
+
+On invalid data, your global ValidationPipe returns 400 Bad Request with messages.
+
+Remember: DTOs are your first defense against bad input.
+
+6) src/auth/auth.service.ts — Signup/Login logic
+
+signup:
+
+Checks if email exists → if yes, throws 409 Conflict
+
+Hashes password with bcrypt.hash(raw, 10)
+
+Creates a user with default roles
+
+Signs a JWT { sub: user.id, roles: user.roles }
+
+Returns { token, user: { id, name, email, roles } }
+
+login:
+
+Finds user by email
+
+Verifies password with bcrypt.compare
+
+Signs & returns token + safe user info
+
+Pro tip: Use user.id (string getter) instead of _id.toString(). TypeScript + Mongoose are happiest that way.
+
+7) src/auth/strategies/jwt.strategy.ts — “How to decode tokens”
+
+ExtractJwt.fromAuthHeaderAsBearerToken() pulls Bearer <token> from headers
+
+Verifies using JWT_SECRET
+
+validate(payload) loads the user by payload.sub. If not found → 401
+
+Whatever you return here becomes req.user for the controller.
+
+Remember: Guards run before controllers; this is why req.user exists.
+
+8) src/auth/enums/role.enum.ts — Roles
+
+Single place that defines permissible roles: User, Admin, Moderator.
+
+9) src/auth/decorators/roles.decorator.ts — @Roles()
+
+Decorator to attach metadata (required roles) to a route or controller class.
+
+10) src/auth/guards/roles.guard.ts — Enforce roles
+
+Reads @Roles(...) metadata with Reflector
+
+Checks if req.user.roles intersects required roles
+
+Used together with AuthGuard('jwt'):
+
+@UseGuards(AuthGuard('jwt'), RolesGuard)
+@Roles(Role.Admin)
+
+
+Remember: Order matters—AuthGuard must run first so req.user exists.
+
+11) src/books/schemas/book.schema.ts — Book model
+
+Fields: title, author, description?, price, category, user (owner ObjectId)
+
+category uses the enum values you defined
+
+timestamps: true adds createdAt, updatedAt
+
+12) src/books/dto/*.dto.ts — Book DTOs
+
+CreateBookDto:
+
+requires fields (title/author/price/category)
+
+@IsEmpty() on user to forbid client from sending it (security)
+
+UpdateBookDto:
+
+extends partial of create dto
+
+still forbids user (server sets ownership)
+
+13) src/books/books.service.ts — Book business logic
+
+findAll({ page, limit, q }): pagination + title search (regex) + total count
+
+findById(id): validates ObjectId, returns 404 if missing
+
+create(dto, userId): sets user to the current logged-in user; saves
+
+update(id, dto, userId): only allows owner to update; else 403
+
+remove(id, userId): only allows owner to delete; else 403
+
+Remember: Ownership checks belong in the service (business rule), not the controller.
+
+14) src/books/books.controller.ts — HTTP routes
+
+GET /books & GET /books/:id → public
+
+POST /books → @UseGuards(AuthGuard('jwt')) (must be logged in)
+
+PUT /books/:id → @UseGuards(AuthGuard('jwt')) (must be owner)
+
+DELETE /books/:id → same
+
+Uses @Req() to access req.user.id and pass to service
+
+Remember: Controller stays thin; it just marshals inputs/outputs and delegates to the service.
+
+How to trace/debug a request (handy for learning)
+
+Add logs:
+
+import { Logger } from '@nestjs/common';
+const log = new Logger('BooksController');
+log.debug(req.user); // see what JwtStrategy returned
+
+
+Use the Network tab (frontend) or Postman to see status codes & error bodies.
+
+Temporarily set JWT_EXPIRES=10s and watch what happens after expiry.

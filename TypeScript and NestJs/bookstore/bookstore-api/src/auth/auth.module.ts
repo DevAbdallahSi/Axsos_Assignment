@@ -10,19 +10,19 @@ import { JwtStrategy } from './strategies/jwt.strategy'; // 👈 path
 import { RolesGuard } from './guards/roles.guard';       // optional provider if you want DI here
 
 @Module({
-  imports: [
-    UsersModule,
-    PassportModule.register({ defaultStrategy: 'jwt' }),
-    JwtModule.registerAsync({
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        secret: config.get<string>('JWT_SECRET'),
-        signOptions: { expiresIn: config.get<string>('JWT_EXPIRES') || '1d' },
-      }),
-    }),
-  ],
-  providers: [AuthService, JwtStrategy, RolesGuard],
-  controllers: [AuthController],
-  exports: [PassportModule, JwtModule, RolesGuard],
+    imports: [
+        UsersModule,
+        PassportModule.register({ defaultStrategy: 'jwt' }),
+        JwtModule.registerAsync({
+            inject: [ConfigService],
+            useFactory: (config: ConfigService) => ({
+                secret: config.get<string>('JWT_SECRET'),
+                signOptions: { expiresIn: config.get<string>('JWT_EXPIRES') || '1d' },
+            }),
+        }),
+    ],
+    providers: [AuthService, JwtStrategy, RolesGuard],
+    controllers: [AuthController],
+    exports: [PassportModule, JwtModule, RolesGuard],
 })
 export class AuthModule {}

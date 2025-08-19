@@ -35,11 +35,16 @@ export class BooksController {
 
     // Example: only Admin/Moderator can delete (ignores owner check)
     // If you prefer "owner only", keep your service's owner check and just require AuthGuard here.
-    @UseGuards(AuthGuard('jwt'), RolesGuard)
-    @Roles(Role.Admin, Role.Moderator)
+    // @UseGuards(AuthGuard('jwt'), RolesGuard)
+    // @Roles(Role.Admin, Role.Moderator)
+    // @Delete(':id')
+    // delete(@Param('id') id: string) {
+    //     // or call a service method that skips owner check for admins
+    //     return this.books.remove(id, undefined as unknown as string); // example; adapt to your logic
+    // }
+    @UseGuards(AuthGuard('jwt'))
     @Delete(':id')
-    delete(@Param('id') id: string) {
-        // or call a service method that skips owner check for admins
-        return this.books.remove(id, undefined as unknown as string); // example; adapt to your logic
+    delete(@Param('id') id: string, @Req() req: any) {
+        return this.books.remove(id, req.user.id ?? req.user._id?.toString());
     }
 }
