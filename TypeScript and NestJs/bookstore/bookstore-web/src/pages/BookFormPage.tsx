@@ -11,17 +11,14 @@ export default function BookFormPage() {
     const { token } = useAuth(); // for route guard; api client will add header
     const { id } = useParams();  // if present → edit mode
     const nav = useNavigate();
-
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState<number>(0);
     const [category, setCategory] = useState<Category>('Fiction');
-
     const [loading, setLoading] = useState(false);
     const [saving, setSaving] = useState(false);
     const [err, setErr] = useState<string | null>(null);
-
     const editing = Boolean(id);
 
     useEffect(() => {
