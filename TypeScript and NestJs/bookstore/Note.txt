@@ -1,0 +1,321 @@
+awesome—let’s stitch everything you already have into one clear mental model, from main.ts all the way to your last files. i’ll explain the flow step-by-step, then give you two diagrams:
+
+a big request lifecycle diagram (arrow flow)
+
+three short sequence diagrams: signup, login, and create/list books
+
+1) Bootstrapping & Global Setup
+main.ts – app entry
+
+Creates the Nest app from AppModule.
+
+Adds Helmet (security headers).
+
+Enables CORS for http://localhost:3000 so your React client can call the API.
+
+Registers a global ValidationPipe → every DTO on controller methods is auto-validated.
+
+Starts listening on PORT (defaults to 3000).
+
+Why it matters:
+
+Every incoming request passes through these global middlewares/pipes before hitting your controllers.
+
+app.module.ts – root wiring (the hub)
+
+ThrottlerModule: rate limiting (10 req / 60s globally).
+
+ConfigModule: reads .env (e.g., JWT_SECRET, MONGODB_URI).
+
+MongooseModule.forRoot: connects to MongoDB.
+
+Imports your AuthModule and BookModule.
+
+Has the default AppController/AppService (mostly boilerplate).
+
+Why it matters:
+
+This is where you plug in your feature modules and core infra (DB, config, throttling).
+
+2) Auth Feature (JWT + Roles)
+auth.module.ts – auth wiring
+
+PassportModule.register({ defaultStrategy: 'jwt' }) → AuthGuard() means JWT by default.
+
+JwtModule.registerAsync → loads JWT_SECRET and expiresIn from .env.
+
+MongooseModule.forFeature([{ name: 'User', schema: UserSchema }]) → makes the User model injectable here.
+
+Provides: AuthService, JwtStrategy; Controller: AuthController.
+
+Exports PassportModule & JwtModule so other modules (like Books) can use the JWT guard.
+
+auth/schemas/user.schema.ts – how a user is stored
+
+Fields: name (required), email (required + unique), password (required), role (array, defaults to [User]).
+
+timestamps: true → createdAt, updatedAt are added automatically.
+
+Why it matters:
+
+This is the shape of your “User row” in Mongo. Every auth operation uses this model.
+
+DTOs – validate input body shapes
+SignupDto
+
+name: string (required)
+
+email: email (required)
+
+password: string (min 8, required)
+
+role?: string[] (optional in your current code)
+
+LoginDto
+
+email: email (required)
+
+password: string (min 8, required)
+
+Why it matters:
+
+Thanks to the global ValidationPipe, bad inputs get rejected with 400 before your service runs.
+
+auth.controller.ts – HTTP routes
+
+POST /auth/signup → expects SignupDto, returns { token }.
+
+GET /auth/login → expects LoginDto in the body (unusual but matches the code you have), returns { token }.
+
+(When we refactor later, we’ll make login a POST. For now, we’re just reading your code as-is.)
+
+auth.service.ts – the auth logic
+
+signUp(SignupDto)
+
+Hash password with bcrypt.hash(password, 10)
+
+Create user in DB
+
+Sign JWT: { id: newUser._id } → return { token }
+
+login(LoginDto)
+
+Find user by email
+
+Compare password with stored hash (bcrypt.compare)
+
+If OK → sign JWT { id: user._id } → return { token }
+
+If user not found / password wrong → UnauthorizedException
+
+Why it matters:
+
+After signup/login, the client holds a JWT used to access protected routes.
+
+jwt.strategy.ts – how JWT auth is enforced per request
+
+Tells Passport where to read the token: Authorization: Bearer <token>.
+
+Uses JWT_SECRET to verify signature/expiration.
+
+validate(payload) runs after verification:
+
+Reads { id } from payload, findById(id), and:
+
+If no user → UnauthorizedException
+
+If user exists → return user
+
+Whatever validate() returns becomes req.user in your controllers.
+
+Why it matters:
+
+This is how your app knows “who” is calling.
+
+Your controllers/services can trust req.user.
+
+Roles stack: role.enum.ts, roles.decorator.ts, roles.guard.ts
+
+Role enum: 'user' | 'admin' | 'moderator'
+
+@Roles(...roles): attach required roles metadata to a route or controller.
+
+RolesGuard: reads that metadata; checks req.user.role has at least one required role.
+
+If no @Roles on route → allow.
+
+If @Roles exists and user lacks role → 403 Forbidden.
+
+Why it matters:
+
+Combine with AuthGuard('jwt') to get (1) must be logged in + (2) must have role.
+
+3) Book Feature (CRUD + ownership)
+book/schemas/book.schema.ts
+
+Fields: title, author, description, price, category (enum), user (ref to User), plus timestamps.
+
+user is a Mongo ObjectId that references the User collection (owner/creator).
+
+Book DTOs – input validation rules
+CreateBookDto
+
+title, author, description: string + required
+
+price: number + required
+
+category: must be one of your enum values (Fiction, Non-Fiction, Science, History)
+
+user: must be empty (@IsEmpty) → the client can’t set owner; backend sets it from req.user.
+
+updateBookDto
+
+Same fields optional
+
+user: must be empty (@IsEmpty) → clients can’t reassign ownership on update.
+
+Why it matters:
+
+Prevents user spoofing and keeps ownership correct.
+
+book.service.ts – book logic
+
+findAll(query)
+
+Pagination: 2 items per page (page query param).
+
+Filtering: optional Keyword query → case-insensitive regex on title.
+
+Returns an array of books for that page.
+
+create(book, user)
+
+Takes the validated book body.
+
+Merges { user: user._id } (the current logged-in user from req.user).
+
+Creates the document in Mongo.
+
+findById(id)
+
+Validates ObjectId format; throws 400 if invalid.
+
+If not found → 404.
+
+Else returns the book.
+
+updateById(id, book)
+
+Updates by id; in your current code it returns Book | null.
+
+deleteById(id)
+
+Deletes by id; returns the deleted doc or null.
+
+book.controller.ts – book endpoints
+
+GET /books
+
+@Throttle({ limit: 3, ttl: 60000 }) → 3 req / 60s on this route.
+
+@UseGuards(AuthGuard(), RolesGuard) + @Roles(Moderator, Admin)
+→ must be logged in and have moderator/admin.
+
+Calls bookService.findAll(query).
+
+POST /books/new
+
+@UseGuards(AuthGuard()) → any logged-in user.
+
+CreateBookDto validated body.
+
+Calls bookService.create(dto, req.user) (owner set server-side).
+
+GET /books/:id → public in your code.
+
+PUT /books/:id → public in your code; body validated by updateBookDto.
+
+DELETE /books/:id → public in your code.
+
+(When we hook React later, we’ll follow exactly these rules.)
+
+4) The BIG Flow (arrow diagram)
+[Client (React/Postman)]
+        |
+        v
+[HTTP Request]  --->  Global Middlewares (main.ts):
+                       - Helmet security headers
+                       - CORS (allow localhost:3000)
+                       - ValidationPipe (DTOs)
+        |
+        v
+[Routing] via Controllers (based on path/method)
+        |
+        |-- (Protected Route?) --> AuthGuard('jwt')
+        |                          - Read "Authorization: Bearer <token>"
+        |                          - Verify with JWT_SECRET
+        |                          - If valid -> JwtStrategy.validate(payload)
+        |                              - payload.id -> find user in DB
+        |                              - if found -> attach user to req.user
+        |                              - else -> 401 Unauthorized
+        |
+        |-- (Role-Restricted?) --> RolesGuard (+ @Roles on handler)
+        |                          - read required roles metadata
+        |                          - check req.user.role has any
+        |                          - if not -> 403 Forbidden
+        |
+        v
+[Controller Handler]  ---->  (DTO validated body arrives here)
+        |
+        v
+[Service] --------------->  (Business logic)
+        |                     e.g. hash/compare password, build queries
+        v
+[Mongoose Model]  ------->  (DB operations)
+        |
+        v
+[MongoDB]
+        |
+        v
+[Service returns result]
+        |
+        v
+[Controller returns response JSON]
+        |
+        v
+[Client receives JSON]
+
+5) Three mini sequence diagrams
+A) Signup (POST /auth/signup)
+Client --> AuthController: POST /auth/signup (name,email,password)
+AuthController --> AuthService: signUp(dto)
+AuthService --> bcrypt: hash(password)
+AuthService --> UserModel: create({ name, email, password: hashed })
+AuthService --> JwtService: sign({ id: newUser._id })
+AuthService --> AuthController: { token }
+AuthController --> Client: { token }
+
+B) Login (GET /auth/login with body)
+Client --> AuthController: GET /auth/login (email,password)
+AuthController --> AuthService: login(dto)
+AuthService --> UserModel: findOne({ email })
+AuthService --> bcrypt: compare(password, user.password)
+AuthService --> JwtService: sign({ id: user._id })
+AuthService --> AuthController: { token }
+AuthController --> Client: { token }
+
+C) Create Book (protected) (POST /books/new)
+Client --(Authorization: Bearer <token>)--> BookController: POST /books/new
+AuthGuard('jwt') --> JwtStrategy: verify + validate(payload.id)
+JwtStrategy --> UserModel: findById(id)
+JwtStrategy --> AuthGuard: return user (=> req.user)
+AuthGuard --> BookController: proceed
+ValidationPipe: validate CreateBookDto
+BookController --> BookService: create(dto, req.user)
+BookService --> BookModel: create({ ...dto, user: req.user._id })
+BookService --> BookController: saved book
+BookController --> Client: saved book JSON
+
+
+(For GET /books, add RolesGuard check after AuthGuard.)
